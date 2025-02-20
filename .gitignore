@@ -1,0 +1,13 @@
+# Ignore everything by default
+/*
+.DS_Store
+
+# Do not ignore these folders
+!kitty/
+!nvim/
+
+# Do not ignore these files
+!.zshrc
+!.gitconfig
+!.gitignore
+!README.md
