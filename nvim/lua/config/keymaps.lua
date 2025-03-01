@@ -5,5 +5,5 @@
 vim.keymap.set("n", "gQ", "<Nop>", { noremap = true })
 vim.keymap.set("n", "q:", "<Nop>", { noremap = true })
 
-vim.keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", { desc = "Explore files" })
-vim.keymap.set("n", "<leader>E", "<Cmd>Explore .<CR>", { desc = "Explore current file's directory" })
+vim.keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", { desc = "Explore current files's directory" })
+vim.keymap.set("n", "<leader>E", "<Cmd>Explore .<CR>", { desc = "Explore current working directory" })
