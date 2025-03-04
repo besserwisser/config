@@ -1,5 +1,7 @@
 return {
   "nvim-java/nvim-java",
+  -- long startup times, disable it for now
+  enabled = false,
   config = false,
   dependencies = {
     {
