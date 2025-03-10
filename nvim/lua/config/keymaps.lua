@@ -7,3 +7,5 @@ vim.keymap.set("n", "q:", "<Nop>", { noremap = true })
 
 vim.keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", { desc = "Explore current files's directory" })
 vim.keymap.set("n", "<leader>E", "<Cmd>Explore .<CR>", { desc = "Explore current working directory" })
+
+vim.keymap.set("n", "<leader>am", "<Cmd>CopilotChatModels<CR>", { desc = "Open Copilot Chat Models" })
