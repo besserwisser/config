@@ -24,3 +24,10 @@ end
 
 vim.keymap.set("n", "<leader>e", ex_to_current_file, { desc = "Explore current files's directory" })
 vim.keymap.set("n", "<leader>E", "<Cmd>Explore .<CR>", { desc = "Explore current working directory" })
+
+vim.keymap.set(
+  "n",
+  "<leader>/",
+  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { desc = "Live Grep with Args" }
+)
