@@ -5,8 +5,5 @@ return {
     notifier = {
       timeout = 5000,
     },
-    scroll = {
-      enabled = false,
-    },
   },
 }

@@ -9,5 +9,3 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.g.netrw_list_hide = "^\\./,^\\.\\./\\=$"
 vim.g.netrw_banner = 0
 vim.cmd([[let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro']])
-
-vim.g.snacks_animate = false
