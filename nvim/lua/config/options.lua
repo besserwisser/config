@@ -7,5 +7,6 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- Remove dot folders from view
 vim.g.netrw_list_hide = "^\\./,^\\.\\./\\=$"
+vim.g.netrw_keepdir = 0
 vim.g.netrw_banner = 0
 vim.cmd([[let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro']])
