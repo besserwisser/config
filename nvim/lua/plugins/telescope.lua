@@ -13,14 +13,23 @@ return {
   config = function()
     local telescope = require("telescope")
 
+    local fb_actions = require("telescope._extensions.file_browser.actions")
+
     -- first setup telescope
     telescope.setup({
       extensions = {
         file_browser = {
-          respect_gitignore = false,
           hidden = {
             file_browser = true,
             folder_browser = true,
+          },
+          mappings = {
+            ["i"] = {
+              ["<C-h>"] = fb_actions.toggle_respect_gitignore,
+            },
+            ["n"] = {
+              ["h"] = fb_actions.toggle_respect_gitignore,
+            },
           },
         },
       },
