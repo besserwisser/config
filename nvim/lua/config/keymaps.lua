@@ -35,3 +35,4 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>fo", "<Cmd>Rfinder<CR>", { desc = "Open file in Mac Finder" })
 
 vim.keymap.set("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+vim.keymap.set("n", "<space>E", ":Telescope file_browser<CR>")
