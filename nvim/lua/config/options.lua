@@ -2,15 +2,6 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-
--- Remove dot folders from view
-vim.g.netrw_list_hide = "^\\./,^\\.\\./\\=$"
-vim.g.netrw_keepdir = 0
-vim.g.netrw_banner = 0
-vim.cmd([[let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro']])
-
 vim.api.nvim_create_user_command("Rfinder", function()
   local path = vim.api.nvim_buf_get_name(0)
   os.execute("open -R " .. path)
