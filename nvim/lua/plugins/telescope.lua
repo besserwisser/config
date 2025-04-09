@@ -22,7 +22,7 @@ return {
           -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#use-terminal-image-viewer-to-preview-images
           mime_hook = function(filepath, bufnr, opts)
             local is_image = function(filepath)
-              local image_extensions = { "png", "jpg", "gif" } -- Supported image formats
+              local image_extensions = { "png", "jpg", "jpeg", "gif" } -- Supported image formats
               local split_path = vim.split(filepath:lower(), ".", { plain = true })
               local extension = split_path[#split_path]
               return vim.tbl_contains(image_extensions, extension)
