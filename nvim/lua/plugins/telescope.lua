@@ -52,7 +52,7 @@ return {
           },
           mappings = {
             ["i"] = {
-              ["<C-h>"] = fb_actions.toggle_respect_gitignore,
+              ["<A-h>"] = fb_actions.toggle_respect_gitignore,
             },
             ["n"] = {
               ["h"] = fb_actions.toggle_respect_gitignore,
