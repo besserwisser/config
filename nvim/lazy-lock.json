@@ -8,7 +8,7 @@
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "catppuccin": { "branch": "main", "commit": "5b5e3aef9ad7af84f463d17b5479f06b87d5c429" },
   "conform.nvim": { "branch": "master", "commit": "eebc724d12c5579d733d1f801386e0ceb909d001" },
-  "copilot.lua": { "branch": "master", "commit": "2378a40e9cecbf3720b6f4f3d5d6b6d8994bd321" },
+  "copilot.lua": { "branch": "master", "commit": "18029c3faa6c87520320d8f1689176940a2abb0e" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
