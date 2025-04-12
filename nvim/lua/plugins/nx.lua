@@ -8,7 +8,7 @@ return {
 
     opts = {
       -- See below for config options
-      nx_cmd_root = "npx nx",
+      nx_cmd_root = "pnpx nx",
     },
 
     -- Plugin will load when you use these keys
