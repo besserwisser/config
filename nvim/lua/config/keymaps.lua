@@ -36,8 +36,10 @@ vim.keymap.set("n", "<leader>fo", "<Cmd>Rfinder<CR>", { desc = "Open file in Mac
 
 vim.keymap.set(
   "n",
-  "<space>e",
+  "<leader>e",
   ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
   { desc = "Telescope file browser (curent file)" }
 )
-vim.keymap.set("n", "<space>E", ":Telescope file_browser<CR>", { desc = "Telescope file browser (root)" })
+vim.keymap.set("n", "<leader>E", ":Telescope file_browser<CR>", { desc = "Telescope file browser (root)" })
+
+vim.keymap.set("n", "<leader>bc", ":!echo % | pbcopy<CR>", { desc = "Copy current relative file path to clipboard" })
