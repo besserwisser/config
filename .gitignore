@@ -19,6 +19,7 @@ simple-update-notifier
 yarn
 zed
 iterm2
+htop
 .*/
 
 .DS_Store
