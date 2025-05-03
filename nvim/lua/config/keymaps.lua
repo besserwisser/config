@@ -42,6 +42,6 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>E", ":Telescope file_browser<CR>", { desc = "Telescope file browser (root)" })
 
-vim.keymap.set("n", "<leader>fc", function()
+vim.keymap.set("n", "<leader>fC", function()
   vim.fn.setreg("+", vim.fn.expand("%"))
 end, { desc = "Copy current relative file path to clipboard" })
