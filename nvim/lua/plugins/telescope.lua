@@ -14,6 +14,7 @@ return {
     local telescope = require("telescope")
 
     local fb_actions = require("telescope._extensions.file_browser.actions")
+    local actions = require("telescope.actions")
 
     -- first setup telescope
     telescope.setup({
@@ -42,6 +43,12 @@ return {
               require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "Binary cannot be previewed")
             end
           end,
+        },
+        mappings = {
+          ["i"] = {
+            ["<C-n>"] = actions.cycle_history_next,
+            ["<C-p>"] = actions.cycle_history_prev,
+          },
         },
       },
       extensions = {
