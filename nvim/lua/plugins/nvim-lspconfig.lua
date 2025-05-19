@@ -12,5 +12,13 @@ return {
         },
       },
     },
+    setup = {
+      eslint = function()
+        -- automatically fix linting errors on save (but otherwise do not format the document)
+        vim.cmd([[
+          autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+        ]])
+      end,
+    },
   },
 }
