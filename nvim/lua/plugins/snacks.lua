@@ -5,5 +5,10 @@ return {
     notifier = {
       timeout = 5000,
     },
+    dashboard = {
+      preset = {
+        header = [[  ]],
+      },
+    },
   },
 }
