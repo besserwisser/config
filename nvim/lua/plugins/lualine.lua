@@ -14,10 +14,13 @@ return {
             hint = icons.diagnostics.Hint,
           },
         },
-        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+        { "filetype", separator = "", padding = { left = 1, right = 0 } },
       },
-      lualine_y = { "buffers" },
-      lualine_z = { "tabs" },
+      lualine_y = { {
+        "filename",
+        path = 1,
+        newfile_status = true,
+      } },
     },
   },
 }
