@@ -13,16 +13,20 @@
     # light = true
 
 [merge]
-	conflictstyle = diff3
-	tool = nvimdiff
-[push]
-	autoSetupRemote = true
-[branch]
-	autosetuprebase = always
-[mergetool "nvimdiff"]
-	trustExitCode = false
+	tool = "nvim"
+
 [mergetool]
 	keepBackup = false
-  prompt = false
+	prompt = false
+
+[mergetool "nvim"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+
+[push]
+	autoSetupRemote = true
+
+[branch]
+	autosetuprebase = always
+
 [alias]
   jump = "!$(brew --prefix git)/share/git-core/contrib/git-jump/git-jump"
