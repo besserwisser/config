@@ -75,6 +75,21 @@ return {
               -- There are more options like "-i" to ignore case or "--no-ignore"
               ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --type ts" }),
               ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              -- iglob with buffer folder string
+              ["<C-p>"] = function(prompt_bufnr)
+                local buffer_folder_path = vim.fn.expand("#")
+                local first_two_segments = buffer_folder_path:match("^([^/]+/[^/]+)/")
+                local first_segment = buffer_folder_path:match("^([^/]+)/")
+                local iglob
+                if first_two_segments then
+                  iglob = " --iglob " .. first_two_segments .. "/**"
+                elseif first_segment then
+                  iglob = " --iglob " .. first_segment .. "/**"
+                else
+                  iglob = " --iglob /**"
+                end
+                lga_actions.quote_prompt({ postfix = iglob })(prompt_bufnr)
+              end,
             },
           },
         },
