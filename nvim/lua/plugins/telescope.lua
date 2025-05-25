@@ -16,6 +16,8 @@ return {
     local fb_actions = require("telescope._extensions.file_browser.actions")
     local actions = require("telescope.actions")
 
+    local lga_actions = require("telescope-live-grep-args.actions")
+
     -- first setup telescope
     telescope.setup({
       defaults = {
@@ -63,6 +65,16 @@ return {
             },
             ["n"] = {
               ["h"] = fb_actions.toggle_respect_gitignore,
+            },
+          },
+        },
+        live_grep_args = {
+          auto_quoting = true,
+          mappings = {
+            i = {
+              -- There are more options like "-i" to ignore case or "--no-ignore"
+              ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --type ts" }),
+              ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
             },
           },
         },
