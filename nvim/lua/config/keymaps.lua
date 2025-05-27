@@ -93,3 +93,6 @@ end, { noremap = true, silent = true, desc = "Next line with same indent" })
 vim.keymap.set("n", "[l", function()
   jump_to_same_indent_level(false)
 end, { noremap = true, silent = true, desc = "Previous line with same indent" })
+
+vim.keymap.set("n", "<leader>gf", ":Telescope git_file_history<CR>", { desc = "Show file history" })
+vim.keymap.set("n", "<leader>gF", ":Telescope git_bcommits<CR>", { desc = "Show file history (diffs)" })
