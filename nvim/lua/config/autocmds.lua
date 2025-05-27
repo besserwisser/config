@@ -16,3 +16,24 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
     vim.b.autoformat = false
   end,
 })
+
+local augroup_format_on_save = vim.api.nvim_create_augroup("MyLspActionsOnSave", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = augroup_format_on_save,
+  pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
+  -- Ensure the Lua code string correctly calls the function
+  callback = function()
+    if
+      LazyVim
+      and LazyVim.lsp
+      and LazyVim.lsp.action
+      and LazyVim.lsp.action["source.removeUnused.ts"]
+      and type(LazyVim.lsp.action["source.removeUnused.ts"]) == "function"
+    then
+      pcall(LazyVim.lsp.action["source.removeUnused.ts"])
+    end
+  end,
+
+  desc = "Remove unused imports on save (for TS/JS) via command",
+})
