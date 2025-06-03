@@ -83,7 +83,7 @@ return {
               ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --type ts" }),
               ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
               -- iglob with buffer folder string
-              ["<C-p>"] = function(prompt_bufnr)
+              ["<C-o>"] = function(prompt_bufnr)
                 local buffer_folder_path = vim.fn.expand("#")
                 local first_two_segments = buffer_folder_path:match("^([^/]+/[^/]+)/")
                 local first_segment = buffer_folder_path:match("^([^/]+)/")
