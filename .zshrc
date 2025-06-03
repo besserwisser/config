@@ -361,3 +361,4 @@ when() {
   printf "Time from first display on minus break of $breakTimeInMinutes minutes: $humanReadableDifferenceWithBreak\n\n"
 }
 
+export NX_TUI=false
