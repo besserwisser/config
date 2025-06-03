@@ -332,33 +332,98 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 when() {
-
   pastDayOffset="0"
-  breakTimeInMinutes="30"
+  breakTimeInMinutes="30" # Total planned break duration for the day
 
+  # --- New: Define your total required work duration ---
+  # For example, 7 hours and 30 minutes
+  totalWorkHours=7
+  totalWorkMinutes=30
+  # --- End New ---
+
+  # Get current time as end timestamp for "so far" calculations
   endTimestamp=$(date +"%Y-%m-%d %H:%M:%S")
+  # Determine the date for which to find the start event
   offsettedDate=$(date -v-"$pastDayOffset"d +"%Y-%m-%d")
-  startLine=$(pmset -g log | grep "$offsettedDate.*Display is turned on" | head -n 1)
-  startTimestamp=$(echo $startLine | cut -c 1-19)
 
-  if [ -z "$startTimestamp" ]; then
-    echo "No display on event found for the given date."
+  # Get the first time the display turned on for the target date
+  startLine=$(pmset -g log | grep "$offsettedDate.*Display is turned on" | head -n 1)
+  startTimestampString=$(echo "$startLine" | cut -c 1-19) # Extract YYYY-MM-DD HH:MM:SS
+
+  if [ -z "$startTimestampString" ]; then
+    echo "No 'Display is turned on' event found for $offsettedDate."
     return 1
   fi
 
-  print "\nstart time: $startTimestamp"
-  print "end time: $endTimestamp\n"
+  print "\nWorkday Details:"
+  print "-------------------------------------------"
+  print "Start time (Display on): $startTimestampString"
+  print "Current time:            $endTimestamp"
+  print "Planned break:           $breakTimeInMinutes minutes"
+  printf "Required work duration:  %d hours %d minutes\n" "$totalWorkHours" "$totalWorkMinutes"
+  printf "-------------------------------------------\n"
 
-  startTimestampInSeconds=$(date -j -f "%Y-%m-%d %H:%M:%S" "$startTimestamp" +%s)
-  endInSeconds=$(date -j -f "%Y-%m-%d %H:%M:%S" "$endTimestamp" +%s)
-  endInSecondsWithBreak=$((endInSeconds - (breakTimeInMinutes * 60)))
-  difference=$((endInSeconds - startTimestampInSeconds))
-  differenceWithBreak=$((endInSecondsWithBreak - startTimestampInSeconds))
-  humanReadableDifference=$(date -u -r $difference +"%T")
-  humanReadableDifferenceWithBreak=$(date -u -r $differenceWithBreak +"%T")
+  # Convert timestamps to seconds since epoch
+  startTimestampInSeconds=$(date -j -f "%Y-%m-%d %H:%M:%S" "$startTimestampString" +%s)
+  currentTimestampInSeconds=$(date -j -f "%Y-%m-%d %H:%M:%S" "$endTimestamp" +%s)
 
-  printf "Time from first display on: $humanReadableDifference\n\n"
-  printf "Time from first display on minus break of $breakTimeInMinutes minutes: $humanReadableDifferenceWithBreak\n\n"
+  # Calculate total elapsed time since display turned on
+  totalTimeElapsedInSeconds=$((currentTimestampInSeconds - startTimestampInSeconds))
+
+  # Calculate actual work done so far (assuming planned break is taken from elapsed time)
+  actualWorkDoneSoFarInSeconds=$((totalTimeElapsedInSeconds - (breakTimeInMinutes * 60)))
+
+  # Ensure actual work done is not negative (e.g., if elapsed time is less than break time)
+  if [ "$actualWorkDoneSoFarInSeconds" -lt 0 ]; then
+    actualWorkDoneSoFarInSeconds=0
+  fi
+
+  # Convert durations to human-readable format (HH:MM:SS)
+  humanReadableTimeElapsed=$(date -u -r "$totalTimeElapsedInSeconds" +"%T" 2>/dev/null || echo "00:00:00")
+  humanReadableActualWorkDone=$(date -u -r "$actualWorkDoneSoFarInSeconds" +"%T" 2>/dev/null || echo "00:00:00")
+
+  printf "Time since display on:      %s\n" "$humanReadableTimeElapsed"
+  printf "Assumed actual work so far: %s (after subtracting %s min break)\n\n" "$humanReadableActualWorkDone" "$breakTimeInMinutes"
+
+  # --- New Calculations for remaining work and stop time ---
+
+  # Convert total required work duration to seconds
+  totalRequiredWorkInSeconds=$(( (totalWorkHours * 60 * 60) + (totalWorkMinutes * 60) ))
+
+  # Calculate the epoch timestamp for when work should ideally finish
+  # This is: Start Time + Required Work Duration + Planned Break Duration
+  expectedStopTimeEpoch=$((startTimestampInSeconds + totalRequiredWorkInSeconds + (breakTimeInMinutes * 60)))
+  humanReadableExpectedStopTime=$(date -r "$expectedStopTimeEpoch" +"%H:%M:%S")
+  humanReadableExpectedStopDate=$(date -r "$expectedStopTimeEpoch" +"%Y-%m-%d")
+
+
+  # Calculate remaining time from "now" (currentTimestampInSeconds) until the expectedStopTimeEpoch
+  timeUntilExpectedStopInSeconds=$((expectedStopTimeEpoch - currentTimestampInSeconds))
+
+  print "Work Progress:"
+  print "-------------------------------------------"
+  if [ "$timeUntilExpectedStopInSeconds" -gt 0 ]; then
+    # Still time to work
+    # How much *more work* is needed from the total requirement?
+    workStillToDoInSeconds=$((totalRequiredWorkInSeconds - actualWorkDoneSoFarInSeconds))
+    if [ "$workStillToDoInSeconds" -lt 0 ]; then # Should not happen if timeUntilExpectedStopInSeconds > 0 and logic is right
+        workStillToDoInSeconds=0                 # But as a safeguard
+    fi
+    humanReadableWorkStillToDo=$(date -u -r "$workStillToDoInSeconds" +"%T" 2>/dev/null || echo "00:00:00")
+    
+    printf "Work remaining:           %s\n" "$humanReadableWorkStillToDo"
+    printf "You can stop working at:  %s \n" "$humanReadableExpectedStopTime"
+  else
+    # Work quota should be met or exceeded
+    printf "Work quota should be met!\n"
+    printf "Expected stop time was:   %s \n" "$humanReadableExpectedStopTime" 
+    
+    overtimeInSeconds=$((timeUntilExpectedStopInSeconds * -1)) # Make it positive
+    if [ "$overtimeInSeconds" -gt 1 ]; then # Check if actually overtime (more than 1 second)
+        humanReadableOvertime=$(date -u -r "$overtimeInSeconds" +"%T" 2>/dev/null || echo "00:00:00")
+        printf "You have worked %s overtime.\n" "$humanReadableOvertime"
+    fi
+  fi
+  printf "-------------------------------------------\n"
 }
-
 export NX_TUI=false
