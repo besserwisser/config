@@ -97,6 +97,8 @@ return {
                 end
                 lga_actions.quote_prompt({ postfix = iglob })(prompt_bufnr)
               end,
+              -- exclude spec.ts files
+              ["<C-l>"] = lga_actions.quote_prompt({ postfix = " --iglob !*.spec.ts" }),
             },
           },
         },
