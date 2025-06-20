@@ -1,6 +1,6 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   opts = {
-    model = "gemini-2.5-pro-preview-06-05",
+    model = "gemini-2.5-pro",
   },
 }
