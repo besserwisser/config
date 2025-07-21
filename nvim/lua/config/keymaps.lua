@@ -13,4 +13,4 @@ vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, { desc = 'Telescope
 vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>fr', telescope_builtin.oldfiles, { desc = 'Telescope recent files' })
 
-
+vim.keymap.set('n', 'grR', "<cmd>TSToolsRenameFile<cr>")

@@ -48,8 +48,12 @@ return {
 					},
 				}
 			})
-			lspconfig.ts_ls.setup({})
 
     end,
   },
+{
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  opts = {},
+}
 }
