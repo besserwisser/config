@@ -1,98 +1,62 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set("n", "gQ", "<Nop>", { noremap = true })
-vim.keymap.set("n", "q:", "<Nop>", { noremap = true })
+-- Diagnostic keymaps
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-vim.keymap.set("n", "<leader>am", "<Cmd>CopilotChatModels<CR>", { desc = "Open Copilot Chat Models" })
+-- Default telescope bindings from the docs
+local telescope_builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, { desc = 'Telescope help tags' })
 
-vim.keymap.set(
-  "n",
-  "<leader>/",
-  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-  { desc = "Live Grep with Args" }
-)
+local lsp_cmds = vim.api.nvim_create_augroup('lsp_cmds', {clear = true})
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = lsp_cmds,
+  desc = 'LSP actions',
+  callback = function(event)
+		local map = function(keys, func, desc, mode)
+			mode = mode or 'n'
+			vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+		end
 
-vim.keymap.set("n", "<leader>fo", "<Cmd>Rfinder<CR>", { desc = "Open file in Mac Finder" })
+		-- Rename the variable under your cursor.
+		--  Most Language Servers support renaming across files, etc.
+		map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
 
-vim.keymap.set(
-  "n",
-  "<leader>e",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  { desc = "Telescope file browser (curent file)" }
-)
-vim.keymap.set("n", "<leader>E", ":Telescope file_browser<CR>", { desc = "Telescope file browser (root)" })
+		-- Execute a code action, usually your cursor needs to be on top of an error
+		-- or a suggestion from your LSP for this to activate.
+		map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
 
-vim.keymap.set("n", "<leader>fC", function()
-  vim.fn.setreg("+", vim.fn.expand("%"))
-end, { desc = "Copy current relative file path to clipboard" })
+		-- Find references for the word under your cursor.
+		map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
--- Asked gemini to rewrite this in lua and only for ]l and [l https://vim.fandom.com/wiki/Move_to_next/previous_line_with_same_indentation
--- Function to jump to the next/previous line with the same indentation level,
--- skipping blank lines.
---
--- Args:
---   is_forward (boolean): true to search forward (like ]l), false to search backward (like [l]).
-local function jump_to_same_indent_level(is_forward)
-  local current_winnr = 0 -- 0 for current window
-  local current_bufnr = 0 -- 0 for current buffer
+		-- Jump to the implementation of the word under your cursor.
+		--  Useful when your language has ways of declaring types without an actual implementation.
+		map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
-  local cursor_pos = vim.api.nvim_win_get_cursor(current_winnr)
-  local current_line_num = cursor_pos[1] -- 1-based line number
-  local original_col_1_idx = vim.fn.col(".") -- Get 1-based visual column for restoration
+		-- Jump to the definition of the word under your cursor.
+		--  This is where a variable was first declared, or where a function is defined, etc.
+		--  To jump back, press <C-t>.
+		map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
-  local last_line_num = vim.api.nvim_buf_line_count(current_bufnr)
-  local current_indent = vim.fn.indent(current_line_num)
+		-- WARN: This is not Goto Definition, this is Goto Declaration.
+		--  For example, in C this would take you to the header.
+		map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-  local step_value
-  if is_forward then
-    step_value = 1
-  else
-    step_value = -1
+		-- Fuzzy find all the symbols in your current document.
+		--  Symbols are things like variables, functions, types, etc.
+		map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
+
+		-- Fuzzy find all the symbols in your current workspace.
+		--  Similar to document symbols, except searches over your entire project.
+		map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
+
+		-- Jump to the type of the word under your cursor.
+		--  Useful when you're not sure what type a variable is and you want to see
+		--  the definition of its *type*, not where it was *defined*.
+		map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
   end
-
-  local target_line_num = current_line_num
-
-  while true do
-    target_line_num = target_line_num + step_value
-
-    -- Check if we've gone past the beginning or end of the file
-    if target_line_num <= 0 or target_line_num > last_line_num then
-      vim.notify("No further line with same indent found", vim.log.levels.WARN)
-      return
-    end
-
-    local target_indent = vim.fn.indent(target_line_num)
-
-    -- Condition 1: Indentation must be the same as the current line's indent
-    if target_indent == current_indent then
-      local line_content = vim.fn.getline(target_line_num)
-
-      -- Condition 2: Line must not be "blank" (must contain at least one non-whitespace character)
-      -- :match("%S") returns the first non-whitespace character if found, otherwise nil.
-      if line_content:match("%S") and not line_content:match("^%s*[%]}%),]+%s*$") then
-        -- Found a suitable line
-        -- Move cursor to the target line, column 0 (0-indexed for the API)
-        vim.api.nvim_win_set_cursor(current_winnr, { target_line_num, 0 })
-        -- Attempt to restore the original column using normal mode `N|` (1-based column)
-        vim.cmd("normal! " .. original_col_1_idx .. "|")
-        return
-      end
-    end
-  end
-end
-
--- Normal mode mappings
--- For "]l": Go to next line with same indentation level (skipping blanks)
-vim.keymap.set("n", "]l", function()
-  jump_to_same_indent_level(true)
-end, { noremap = true, silent = true, desc = "Next line with same indent" })
-
--- For "[l": Go to previous line with same indentation level (skipping blanks)
-vim.keymap.set("n", "[l", function()
-  jump_to_same_indent_level(false)
-end, { noremap = true, silent = true, desc = "Previous line with same indent" })
-
-vim.keymap.set("n", "<leader>gf", ":Telescope git_file_history<CR>", { desc = "Show file history" })
-vim.keymap.set("n", "<leader>gF", ":Telescope git_bcommits<CR>", { desc = "Show file history (diffs)" })
+})
