@@ -6,13 +6,10 @@ return {
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
-      cond = function()
-        return vim.fn.executable 'make' == 1
-      end,
     },
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    { 'nvim-tree/nvim-web-devicons' },
   },
-  config = function(_, opts)
+  config = function()
     require("telescope").load_extension("fzf")
   end,
 }
