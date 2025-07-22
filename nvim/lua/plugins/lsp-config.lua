@@ -22,6 +22,10 @@ return {
 		lazy = false,
 		config = function()
 			local lspconfig = require("lspconfig")
+			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			lspconfig.ts_ls.setup({
+				capabilities = capabilities
+			})
 			lspconfig.eslint.setup({
 				settings = {
 					rulesCustomizations = {
@@ -39,6 +43,7 @@ return {
 				end
 			})
 			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
 				settings = {
 					Lua = {
 						runtime = {

@@ -7,6 +7,9 @@ return {
 		},
 	},
 	{
+		"hrsh7th/cmp-nvim-lsp"
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
@@ -30,6 +33,7 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 				}, {
 					{ name = "buffer" },
