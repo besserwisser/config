@@ -9,8 +9,8 @@ return {
 		build = "make tiktoken",
 		opts = {},
 		keys = {
-			{ "<leader>aa", "<cmd>CopilotChatOpen<cr>",    desc = "Copilot Open" },
-			{ "<leader>ap", "<cmd>CopilotChatPrompts<cr>", desc = "Copilot Chat Prompts" },
+			{ "<leader>aa", "<cmd>CopilotChatOpen<cr>", desc = "CopilotChatOpen" },
+			{ "<leader>ap", "<cmd>CopilotChatPrompts<cr>", desc = "CopilotChatPrompts" },
 		},
 	},
 }

@@ -27,7 +27,7 @@ return {
 					},
 				})
 			end,
-			desc = "Find Files",
+			desc = 'require("telescope.builtin").find_files',
 		},
 		{
 			"<leader>fg",
@@ -50,18 +50,22 @@ return {
 					},
 				})
 			end,
-			desc = "Live Grep",
+			desc = 'require("telescope").extensions.live_grep_args.live_grep_args',
 		},
 		{
 			"<leader>fb",
 			'<cmd>lua require("telescope.builtin").buffers()<CR>',
-			desc = "Find Buffers",
+			desc = 'require("telescope.builtin").buffers',
 		},
-		{ "<leader>fh", '<cmd>lua require("telescope.builtin").help_tags()<CR>', desc = "Help Tags" },
+		{
+			"<leader>fh",
+			'<cmd>lua require("telescope.builtin").help_tags()<CR>',
+			desc = 'require("telescope.builtin").help_tags',
+		},
 		{
 			"<leader>fr",
 			'<cmd>lua require("telescope.builtin").oldfiles({ only_cwd = true })<CR>',
-			desc = "Recent Files",
+			desc = 'require("telescope.builtin").oldfiles({ only_cwd = true })',
 		},
 	},
 	config = function()
