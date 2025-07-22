@@ -246,3 +246,6 @@ export NX_TUI=false
 
 # fzf auto completion
 source <(fzf --zsh)
+
+# use fzf to find file to open in nvim
+alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
