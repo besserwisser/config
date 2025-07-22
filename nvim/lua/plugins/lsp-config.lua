@@ -1,8 +1,32 @@
+-- https://github.com/nvim-telescope/telescope.nvim/issues/3328
+local function filterDuplicates(array)
+	local uniqueArray = {}
+	for _, tableA in ipairs(array) do
+		local isDuplicate = false
+		for _, tableB in ipairs(uniqueArray) do
+			if vim.deep_equal(tableA, tableB) then
+				isDuplicate = true
+				break
+			end
+		end
+		if not isDuplicate then
+			table.insert(uniqueArray, tableA)
+		end
+	end
+	return uniqueArray
+end
+
+local function on_list(options)
+	options.items = filterDuplicates(options.items)
+	vim.fn.setqflist({}, " ", options)
+	vim.cmd("botright copen")
+end
+
 return {
 	{
 		"williamboman/mason.nvim",
 		lazy = false,
-		opts = {}
+		opts = {},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -13,8 +37,10 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"lua_ls", "ts_ls", "eslint"
-			}
+				"lua_ls",
+				"ts_ls",
+				"eslint",
+			},
 		},
 	},
 	{
@@ -22,9 +48,15 @@ return {
 		lazy = false,
 		config = function()
 			local lspconfig = require("lspconfig")
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "vim.lsp.buf.definition" })
+			vim.keymap.set("n", "grr", function()
+				vim.lsp.buf.references(nil, { on_list = on_list })
+			end, { desc = "vim.lsp.buf.references" })
+
 			lspconfig.ts_ls.setup({
-				capabilities = capabilities
+				capabilities = capabilities,
 			})
 			lspconfig.eslint.setup({
 				settings = {
@@ -40,7 +72,7 @@ return {
 							vim.cmd([[EslintFixAll]])
 						end,
 					})
-				end
+				end,
 			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -49,13 +81,13 @@ return {
 						runtime = {
 							-- Tell the language server which version of Lua you're using
 							-- (most likely LuaJIT in the case of Neovim)
-							version = 'LuaJIT',
+							version = "LuaJIT",
 						},
 						diagnostics = {
 							-- Get the language server to recognize the `vim` global
 							globals = {
-								'vim',
-								'require'
+								"vim",
+								"require",
 							},
 						},
 						workspace = {
@@ -67,7 +99,7 @@ return {
 							enable = false,
 						},
 					},
-				}
+				},
 			})
 		end,
 	},
