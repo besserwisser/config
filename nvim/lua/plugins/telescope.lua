@@ -1,49 +1,68 @@
 return {
-	'nvim-telescope/telescope.nvim',
-	tag = '0.1.8',
+	"nvim-telescope/telescope.nvim",
+	tag = "0.1.8",
+	cmd = { "Telescope" }, -- Load when the `Telescope` command is used
 	dependencies = {
-		'nvim-lua/plenary.nvim',
+		"nvim-lua/plenary.nvim",
 		{
-			'nvim-telescope/telescope-fzf-native.nvim',
-			build = 'make',
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
 		},
-		{ 'nvim-tree/nvim-web-devicons' },
+		{ "nvim-tree/nvim-web-devicons" },
 		"nvim-telescope/telescope-live-grep-args.nvim",
 	},
 	keys = {
 		{
-			'<leader>ff',
+			"<leader>ff",
 			function()
 				require("telescope.builtin").find_files({
 					hidden = true,
 					find_command = {
-						"rg", "--files", "--hidden",
+						"rg",
+						"--files",
+						"--hidden",
 						"--glob=!.git/**",
 						"--glob=!node_modules/**",
-						"--glob=!tmp/**"
-					}
+						"--glob=!tmp/**",
+					},
 				})
 			end,
-			desc = 'Find Files'
+			desc = "Find Files",
 		},
 		{
-			'<leader>fg',
+			"<leader>fg",
 			function()
 				require("telescope").extensions.live_grep_args.live_grep_args({
-					additional_args = function() return { "--hidden" } end,
+					additional_args = function()
+						return { "--hidden" }
+					end,
 					vimgrep_arguments = {
-						"rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case",
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
 						"--glob=!.git/**",
 						"--glob=!node_modules/**",
-						"--glob=!tmp/**"
-					}
+						"--glob=!tmp/**",
+					},
 				})
 			end,
-			desc = 'Live Grep'
+			desc = "Live Grep",
 		},
-		{ '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<CR>',                     desc = 'Find Buffers' },
-		{ '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<CR>',                   desc = 'Help Tags' },
-		{ '<leader>fr', '<cmd>lua require("telescope.builtin").oldfiles({ only_cwd = true })<CR>', desc = 'Recent Files' },
+		{
+			"<leader>fb",
+			'<cmd>lua require("telescope.builtin").buffers()<CR>',
+			desc = "Find Buffers",
+		},
+		{ "<leader>fh", '<cmd>lua require("telescope.builtin").help_tags()<CR>', desc = "Help Tags" },
+		{
+			"<leader>fr",
+			'<cmd>lua require("telescope.builtin").oldfiles({ only_cwd = true })<CR>',
+			desc = "Recent Files",
+		},
 	},
 	config = function()
 		local telescope = require("telescope")
