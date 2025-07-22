@@ -10,6 +10,7 @@ return {
 			},
 			on_attach = function(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
+					vim.keymap.set("n", "grf", vim.lsp.buf.format, { desc = "vim.lsp.buf.format" })
 					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						group = augroup,
