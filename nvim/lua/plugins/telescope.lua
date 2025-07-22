@@ -67,6 +67,11 @@ return {
 			'<cmd>lua require("telescope.builtin").oldfiles({ only_cwd = true })<CR>',
 			desc = 'require("telescope.builtin").oldfiles({ only_cwd = true })',
 		},
+		{
+			"<leader>fk",
+			'<cmd>lua require("telescope.builtin").keymaps()<CR>',
+			desc = 'require("telescope.builtin").keymaps',
+		},
 	},
 	config = function()
 		local telescope = require("telescope")
