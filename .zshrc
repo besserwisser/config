@@ -249,3 +249,5 @@ source <(fzf --zsh)
 
 # use fzf to find file to open in nvim
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+# use fzf to find commit
+alias fdc="git log --oneline | fzf --preview 'git show --color=always {+1}' | awk '{print $1}' | xargs -I {} git show {}"
