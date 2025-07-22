@@ -15,7 +15,7 @@ return {
 		{ '<leader>fg', '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>', desc = 'Live Grep' },
 		{ '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<CR>',                          desc = 'Find Buffers' },
 		{ '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<CR>',                        desc = 'Help Tags' },
-		{ '<leader>fr', '<cmd>lua require("telescope.builtin").oldfiles()<CR>',                         desc = 'Recent Files' },
+		{ '<leader>fr', '<cmd>lua require("telescope.builtin").oldfiles({ only_cwd = true })<CR>',      desc = 'Recent Files' },
 	},
 	config = function()
 		local telescope = require("telescope")
