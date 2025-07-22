@@ -1,28 +1,44 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    lazy = false,
+	{
+		"williamboman/mason.nvim",
+		lazy = false,
 		opts = {}
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,    
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
 		dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    opts = {
+			"williamboman/mason.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		opts = {
 			ensure_installed = {
-				"lua_ls", "ts_ls"
+				"lua_ls", "ts_ls", "eslint"
 			}
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		lazy = false,
+		config = function()
+			local lspconfig = require("lspconfig")
+			lspconfig.eslint.setup({
+				settings = {
+					rulesCustomizations = {
+						-- https://github.com/import-js/eslint-plugin-import/issues/1913
+						{ rule = "import/no-extraneous-dependencies", severity = "off" },
+					},
+				},
+				on_attach = function()
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						pattern = "*.tsx,*.ts,*.jsx,*.js",
+						callback = function()
+							vim.cmd([[EslintFixAll]])
+						end,
+					})
+				end
+			})
+			lspconfig.lua_ls.setup({
 				settings = {
 					Lua = {
 						runtime = {
@@ -48,12 +64,6 @@ return {
 					},
 				}
 			})
-
-    end,
-  },
-{
-  "pmizio/typescript-tools.nvim",
-  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  opts = {},
-}
+		end,
+	},
 }
