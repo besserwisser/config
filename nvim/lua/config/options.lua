@@ -1,6 +1,9 @@
 -- set cmd line to zero to hide it while not using it
 vim.o.cmdheight = 0
---
+
+-- make statusline fit better to background image
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "#090909" })
+
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
