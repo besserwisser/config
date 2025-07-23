@@ -66,13 +66,18 @@ return {
 					},
 				},
 				on_attach = function()
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						pattern = "*.tsx,*.ts,*.jsx,*.js",
-						callback = function()
-							vim.cmd([[EslintFixAll]])
-						end,
-					})
+					vim.keymap.set("n", "gre", function()
+						vim.cmd([[EslintFixAll]])
+					end, { desc = "Eslint Fix All" })
 				end,
+				-- on_attach = function()
+				-- 	vim.api.nvim_create_autocmd("BufWritePre", {
+				-- 		pattern = "*.tsx,*.ts,*.jsx,*.js",
+				-- 		callback = function()
+				-- 			vim.cmd([[EslintFixAll]])
+				-- 		end,
+				-- 	})
+				-- end,
 			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
