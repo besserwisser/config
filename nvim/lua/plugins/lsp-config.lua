@@ -38,7 +38,6 @@ return {
 		opts = {
 			ensure_installed = {
 				"lua_ls",
-				"ts_ls",
 				"eslint",
 			},
 		},
@@ -55,9 +54,6 @@ return {
 				vim.lsp.buf.references(nil, { on_list = on_list })
 			end, { desc = "vim.lsp.buf.references" })
 
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.eslint.setup({
 				settings = {
 					rulesCustomizations = {
@@ -100,6 +96,21 @@ return {
 						},
 					},
 				},
+			})
+		end,
+	},
+	{
+		"besserwisser/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		config = function()
+			vim.lsp.set_log_level("trace")
+			require("typescript-tools").setup({
+				on_attach = function(_, bufnr)
+					vim.keymap.set("n", "grN", "<cmd>TSToolsRenameFile<CR>", {
+						buffer = bufnr,
+						desc = "TSToolsRenameFile",
+					})
+				end,
 			})
 		end,
 	},
