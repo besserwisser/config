@@ -95,7 +95,7 @@ vim.diagnostic.config({
 		},
 	} or {},
 	virtual_text = {
-		source = "if_many",
+		source = true,
 		spacing = 2,
 		format = function(diagnostic)
 			local diagnostic_message = {
