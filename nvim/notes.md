@@ -7,14 +7,17 @@ A personal collection of useful commands and concepts.
 ## Normal Mode
 
 ### Editing
+
 - `yy` - **Copy (yank)** the entire current line.
 - `.` - **Repeat** the last change (e.g., a deletion, paste, or command).
 - `cib` - **Change inside block** (parentheses). Deletes content inside `()` and enters insert mode.
 - `cgn` - **Change** the **next search match**. Can be repeated with `.`.
 - `<C-a>` - **Increment** the number under or after the cursor.
 - `<C-x>` - **Decrement** the number under or after the cursor.
+- `:windo diffthis` - **Show differences** between all open buffers in diff mode.
 
 ### Motions
+
 - `e` / `E` - Jump to the **end** of the current word. `E` uses WORDs (delimited by whitespace).
 - `w` / `W` - Jump forward to the start of the next **word**. `W` uses WORDs.
 - `f{char}` / `F{char}` - **Find** a character on the current line (forward/backward).
@@ -44,11 +47,13 @@ A personal collection of useful commands and concepts.
 ## Command-Line Mode
 
 ### Files & Buffers
+
 - `:enew` - Create a **new, unnamed buffer** for scratch work.
 - `:e!` - **Reload the file**, discarding all unsaved changes.
 - `:b` - Switch between open **buffers**. Use `<Tab>` to complete buffer names.
 
 ### The `:global` Command
+
 The `:global` command (`:g`) executes a command on all lines matching a pattern. Use `:vglobal` (`:v`) for all lines **not** matching.
 
 - `:g/pattern/d` - **Delete** all lines containing "pattern".
