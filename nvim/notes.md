@@ -34,6 +34,7 @@ A personal collection of useful commands and concepts.
 - `gv` - **Reselect** the **previous visual selection**.
 - `o` - Toggle the cursor between the **beginning and end** of the visual selection.
 - **Text Objects** - Use text objects like `iw` (inside word) or `a"` (around quotes) to quickly change or expand your visual selection.
+- `an` / `in` - Select **around** or **inside** a node in languages like XML or HTML.
 
 ---
 
