@@ -14,7 +14,7 @@ A personal collection of useful commands and concepts.
 - `cgn` - **Change** the **next search match**. Can be repeated with `.`.
 - `<C-a>` - **Increment** the number under or after the cursor.
 - `<C-x>` - **Decrement** the number under or after the cursor.
-- `:windo diffthis` - **Show differences** between all open buffers in diff mode.
+- `:windo diffthis` - **Show differences** between all open buffers in diff mode. Use `:windo diffoff` to exit diff mode.
 
 ### Motions
 
