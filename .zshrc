@@ -1,4 +1,3 @@
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -254,7 +253,8 @@ source <(fzf --zsh)
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 # use fzf to find commit
 alias fdc="git log --oneline | fzf --preview 'git show --color=always {+1}' | awk '{print $1}' | xargs -I {} git show {}"
-
+# usr fzf to find branch to switch
+alias gswf='git switch $(git branch -a | sed "s#remotes/origin/##" | sort -u | fzf)'
 # use for k9s when editing resources
 export EDITOR=nvim
 
