@@ -6,6 +6,11 @@ snacks.setup({
 	picker = {
 		ui_select = true,
 		sources = {
+			recent = {
+				filter = {
+					cwd = true,
+				},
+			},
 			explorer = {
 				layout = {
 					preset = "ivy_split",
@@ -16,6 +21,8 @@ snacks.setup({
 		},
 	},
 })
+
+vim.notify("meow")
 
 local keymap = vim.keymap.set
 
@@ -36,7 +43,7 @@ keymap("n", "<leader>fc", function() snacks.picker.files({ cwd = vim.fn.stdpath(
 keymap("n", "<leader>ff", function() snacks.picker.files() end, { desc = "Find Files" })
 keymap("n", "<leader>fg", function() snacks.picker.git_files() end, { desc = "Find Git Files" })
 keymap("n", "<leader>fp", function() snacks.picker.projects() end, { desc = "Projects" })
-keymap("n", "<leader>fr", function() snacks.picker.recent({ filter = { cwd = true } }) end, { desc = "Recent" })
+keymap("n", "<leader>fr", function() snacks.picker.recent() end, { desc = "Recent" })
 
 -- git
 keymap("n", "<leader>gb", function() snacks.picker.git_branches() end, { desc = "Git Branches" })
@@ -85,6 +92,5 @@ keymap("n", "gO", function() snacks.picker.lsp_symbols() end, { desc = "LSP Symb
 
 -- Other
 keymap("n", "<leader>cR", function() snacks.rename.rename_file() end, { desc = "Rename File" })
-keymap("n", "<leader>n", function() snacks.notifier.show_history() end, { desc = "Notification History" })
 
 -- stylua: ignore end
