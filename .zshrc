@@ -255,6 +255,7 @@ alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias fdc="git log --oneline | fzf --preview 'git show --color=always {+1}' | awk '{print $1}' | xargs -I {} git show {}"
 # usr fzf to find branch to switch
 alias gswf='git switch $(git branch -a | sed "s#remotes/origin/##" | sort -u | fzf)'
+
 # use for k9s when editing resources
 export EDITOR=nvim
 
