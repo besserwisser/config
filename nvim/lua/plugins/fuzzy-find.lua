@@ -22,8 +22,6 @@ snacks.setup({
 	},
 })
 
-vim.notify("meow")
-
 local keymap = vim.keymap.set
 
 
