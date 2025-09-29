@@ -3,7 +3,19 @@ vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
 local nvim_treesitter_configs = require("nvim-treesitter.configs")
 
 nvim_treesitter_configs.setup({
-	ensure_installed = { "lua", "javascript", "typescript", "tsx", "json", "css", "html", "http", "diff", "vue" },
+	ensure_installed = {
+		"lua",
+		"javascript",
+		"typescript",
+		"tsx",
+		"json",
+		"css",
+		"html",
+		"http",
+		"diff",
+		"vue",
+		"regex",
+	},
 	auto_install = false,
 	highlight = { enable = true },
 	indent = { enable = true },
