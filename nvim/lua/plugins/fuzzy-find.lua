@@ -8,6 +8,14 @@ local snacks = require("snacks")
 snacks.setup({
 	picker = {
 		ui_select = true,
+		win = {
+			input = {
+				keys = {
+					["<C-n>"] = { "history_forward", mode = { "i", "n" } },
+					["<C-p>"] = { "history_back", mode = { "i", "n" } },
+				},
+			},
+		},
 		formatters = {
 			file = {
 				truncate = 100,
