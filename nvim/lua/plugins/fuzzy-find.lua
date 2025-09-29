@@ -8,6 +8,12 @@ local snacks = require("snacks")
 snacks.setup({
 	picker = {
 		ui_select = true,
+		formatters = {
+			file = {
+				truncate = 100,
+				filename_first = true,
+			},
+		},
 		sources = {
 			explorer = {
 				layout = {
