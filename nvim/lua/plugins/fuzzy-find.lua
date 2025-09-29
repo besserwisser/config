@@ -5,6 +5,15 @@ local snacks = require("snacks")
 snacks.setup({
 	picker = {
 		ui_select = true,
+		sources = {
+			explorer = {
+				layout = {
+					preset = "ivy_split",
+					preview = true,
+					height = 0.8,
+				},
+			},
+		},
 	},
 })
 
@@ -73,5 +82,9 @@ keymap("n", "grr", function() snacks.picker.lsp_references() end, { nowait = tru
 keymap("n", "gri", function() snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
 keymap("n", "grt", function() snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
 keymap("n", "gO", function() snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" })
+
+-- Other
+keymap("n", "<leader>cR", function() snacks.rename.rename_file() end, { desc = "Rename File" })
+keymap("n", "<leader>n", function() snacks.notifier.show_history() end, { desc = "Notification History" })
 
 -- stylua: ignore end
