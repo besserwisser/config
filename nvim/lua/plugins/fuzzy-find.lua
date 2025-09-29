@@ -20,6 +20,7 @@ snacks.setup({
 					preset = "telescope",
 					preview = true,
 				},
+				auto_close = true,
 			},
 			recent = {
 				filter = {
