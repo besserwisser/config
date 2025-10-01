@@ -8,16 +8,16 @@ sidekick.setup()
 vim.keymap.set({ "i", "n" }, "<tab>", function()
 	-- if there is a next edit, jump to it, otherwise apply it if any
 	if require("sidekick").nes_jump_or_apply() then
-		return -- jumped or applied
+		return ""
 	end
 	-- if you are using Neovim's native inline completions
 	if vim.lsp.inline_completion.get() then
-		return
+		return ""
 	end
 	-- any other things (like snippets) you want to do on <tab> go here.
 	-- fall back to normal tab
 	return "<tab>"
-end)
+end, { expr = true })
 vim.keymap.set({ "n", "v" }, "<leader>aa", function()
 	require("sidekick.cli").toggle({ focus = true, name = "copilot" })
 end)
