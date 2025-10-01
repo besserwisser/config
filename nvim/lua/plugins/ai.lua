@@ -1,17 +1,28 @@
 vim.pack.add({
-	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/CopilotC-Nvim/CopilotChat.nvim",
+	"https://github.com/folke/sidekick.nvim",
 })
 
-local copilot_chat = require("CopilotChat")
+local sidekick = require("sidekick")
+sidekick.setup()
 
-copilot_chat.setup({})
-
+vim.keymap.set({ "i", "n" }, "<tab>", function()
+	-- if there is a next edit, jump to it, otherwise apply it if any
+	if require("sidekick").nes_jump_or_apply() then
+		return -- jumped or applied
+	end
+	-- if you are using Neovim's native inline completions
+	if vim.lsp.inline_completion.get() then
+		return
+	end
+	-- any other things (like snippets) you want to do on <tab> go here.
+	-- fall back to normal tab
+	return "<tab>"
+end)
 vim.keymap.set({ "n", "v" }, "<leader>aa", function()
-	copilot_chat.open()
+	require("sidekick.cli").toggle({ focus = true, name = "copilot" })
 end)
 vim.keymap.set({ "n", "v" }, "<leader>ap", function()
-	copilot_chat.select_prompt()
+	require("sidekick.cli").select_prompt()
 end)
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -19,9 +30,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
 		-- Enable LLM-based inline completion
 		vim.lsp.inline_completion.enable(true)
-		vim.keymap.set({ "i", "n" }, "<C-j>", function()
-			vim.lsp.inline_completion.get()
-		end)
 		vim.keymap.set("i", "<C-;>", function()
 			vim.lsp.inline_completion.select()
 		end)
