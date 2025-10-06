@@ -14,5 +14,15 @@ require("neovim_tips").setup({
 	warn_on_conflicts = true,
 
 	-- Daily tip mode: 0=off, 1=once per day, 2=every startup
-	daily_tip = 2,
+	daily_tip = 0,
+})
+
+-- run daily tutorial
+vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
+	callback = function()
+		vim.schedule(function()
+			vim.cmd([[NeovimTipsRandom]])
+		end)
+	end,
 })
