@@ -1,3 +1,6 @@
+-- disable startup screen
+vim.o.shortmess = vim.o.shortmess .. "I"
+
 -- Enable the new Lua loader
 vim.loader.enable()
 
