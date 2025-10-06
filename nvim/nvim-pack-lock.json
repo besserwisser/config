@@ -21,6 +21,14 @@
       "rev": "ad7146a",
       "src": "https://github.com/williamboman/mason.nvim"
     },
+    "neovim-tips": {
+      "rev": "d69e3ec",
+      "src": "https://github.com/saxon1964/neovim-tips"
+    },
+    "nui.nvim": {
+      "rev": "de74099",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim-dap": {
       "rev": "48570d8",
       "src": "https://github.com/mfussenegger/nvim-dap"
@@ -44,6 +52,10 @@
     "nvim-web-devicons": {
       "rev": "b8221e4",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "render-markdown.nvim": {
+      "rev": "7e6af36",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "sidekick.nvim": {
       "rev": "e869205",
