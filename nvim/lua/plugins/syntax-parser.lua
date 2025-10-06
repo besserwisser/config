@@ -15,6 +15,7 @@ nvim_treesitter_configs.setup({
 		"diff",
 		"vue",
 		"regex",
+		"terraform",
 	},
 	auto_install = false,
 	highlight = { enable = true },
