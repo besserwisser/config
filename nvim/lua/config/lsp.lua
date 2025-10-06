@@ -62,4 +62,4 @@ vim.lsp.config("copilot", {
 	},
 })
 
-vim.lsp.enable({ "vtsls", "lua_ls", "eslint", "vue_ls", "copilot" })
+vim.lsp.enable({ "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })

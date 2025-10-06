@@ -18,5 +18,6 @@ mason_tool_installer.setup({
 		"tree-sitter-cli",
 		"vue-language-server",
 		"copilot-language-server",
+		"terraform-ls",
 	},
 })
