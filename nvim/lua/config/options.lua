@@ -1,3 +1,6 @@
+-- disable mouse support
+vim.o.mouse = ""
+
 -- disable startup screen
 vim.o.shortmess = vim.o.shortmess .. "I"
 
