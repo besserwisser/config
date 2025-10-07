@@ -16,6 +16,7 @@ A personal collection of useful commands and concepts.
 - `<C-x>` - **Decrement** the number under or after the cursor.
 - `:windo diffthis` - **Show differences** between all open buffers in diff mode. Use `:windo diffoff` to exit diff mode.
 - `D` - delete from the cursor to the end of the line (same as `d$`).
+- `<C-[>` or `<C-c>` - Exit insert mode (similiar as `Esc`).
 
 ### Motions
 
