@@ -6,7 +6,10 @@ A personal collection of useful commands and concepts.
 
 ## Normal Mode
 
-Put your right index finger on `j` and the middle finger on `k` for easy navigation.
+### Navigation
+
+- Put your right index finger on `j` and the middle finger on `k` for easy navigation.
+- `<C-f>` and `<C-b>` - **Page down** and **page up**.
 
 ### Editing
 
