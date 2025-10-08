@@ -14,7 +14,7 @@ A personal collection of useful commands and concepts.
 ### Editing
 
 - `yy` - **Copy (yank)** the entire current line.
-- `.` - **Repeat** the last change (e.g., a deletion, paste, or command). Also use it for repeating an edit, e.g. when inserting a text.
+- `.` - **Repeat** the last change (e.g., a deletion, paste, or command).
 - `cib` - **Change inside block** (parentheses). Deletes content inside `()` and enters insert mode.
 - `cgn` - **Change** the **next search match**. Can be repeated with `.`.
 - `<C-a>` - **Increment** the number under or after the cursor.
@@ -35,8 +35,6 @@ A personal collection of useful commands and concepts.
 - `gn` / `gN` - **Select** the **next/previous search match** in visual mode.
 - `'.` - Jump to the **exact position** of the last change.
 - `f(w` - Jump to function arguments (inside parentheses).
-- `g_` - Jump to the last non-blank character of the line.
-- `90%` - Jump to 90% of the way through the file.
 
 ---
 
@@ -57,8 +55,6 @@ A personal collection of useful commands and concepts.
 ---
 
 ## Command-Line Mode
-
-- `<C-w>` - **Delete the previous word** in command-line mode.
 
 ### Files & Buffers
 
