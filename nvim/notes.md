@@ -26,7 +26,7 @@ A personal collection of useful commands and concepts.
 ### Motions
 
 - `e` / `E` - Jump to the **end** of the current word. `E` uses WORDs (delimited by whitespace).
-- `w` / `W` - Jump forward to the start of the next **word**. `W` uses WORDs.
+- `w` / `W` - Jump forward to the start of the next **word**. `W` uses WORDs. Often time you can use it to jump between function names or variables or other identifiers.
 - `f{char}` / `F{char}` - **Find** a character on the current line (forward/backward).
 - `t{char}` / `T{char}` - Jump **'til** (just before) a character on the current line (forward/backward).
 - `;` / `,` - **Repeat** the last `f`, `F`, `t`, or `T` motion forward (`;`) or backward (`,`).
