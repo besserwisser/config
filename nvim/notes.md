@@ -34,6 +34,7 @@ A personal collection of useful commands and concepts.
 - `[{` - Jump to the **previous unmatched `{` brace**. Can be combined with `v%` (e.g., `[{v%`) to select the entire block.
 - `gn` / `gN` - **Select** the **next/previous search match** in visual mode.
 - `'.` - Jump to the **exact position** of the last change.
+- `f(w` - Jump to function arguments (inside parentheses).
 
 ---
 
