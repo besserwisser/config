@@ -56,6 +56,8 @@ A personal collection of useful commands and concepts.
 
 ## Command-Line Mode
 
+- `C-f>` - Open the command-line window for easier editing of long commands. Press `<C-c>` to exit.
+
 ### Files & Buffers
 
 - `:enew` - Create a **new, unnamed buffer** for scratch work.
