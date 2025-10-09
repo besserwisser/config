@@ -7,9 +7,6 @@ vim.keymap.set("n", "<leader>D", function()
 	vim.diagnostic.setqflist({ open = true })
 end, { desc = "Show diagnostics in quickfix window" })
 
--- Paste without overwriting the default register
-vim.keymap.set("x", "<leader>p", [["_dP]])
-
 -- disable arrow keys in all modes
 vim.keymap.set({ "n", "i", "v", "c" }, "<Up>", "<Nop>")
 vim.keymap.set({ "n", "i", "v", "c" }, "<Down>", "<Nop>")
