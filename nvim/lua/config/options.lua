@@ -3,6 +3,7 @@ vim.o.mouse = ""
 
 -- disable startup screen
 vim.o.shortmess = vim.o.shortmess .. "I"
+vim.notify(vim.o.shortmess)
 
 -- Enable the new Lua loader
 vim.loader.enable()
@@ -68,8 +69,36 @@ vim.o.swapfile = false
 -- avoid ugly wrapping of long lines
 vim.o.wrap = false
 
--- Simplify the status line
-vim.o.statusline = "%{reg_recording()} %= %F %m"
+-- Function to show search count in statusline
+_G.search_count = function()
+	local result = vim.fn.searchcount({ recompute = 1 })
+	if vim.tbl_isempty(result) then
+		return ""
+	end
+
+	-- Check if we're currently in search mode or if search highlighting is active
+	local search_active = vim.v.hlsearch == 1 and vim.fn.getreg("/") ~= ""
+
+	-- Return empty if search is not active (e.g., after ESC or :noh)
+	if not search_active then
+		return ""
+	end
+
+	if result.incomplete == 1 then -- timed out
+		return " [?/??]"
+	elseif result.incomplete == 2 then -- max count exceeded
+		if result.total > result.maxcount and result.current > result.maxcount then
+			return string.format(" [>%d/>%d]", result.current, result.total)
+		elseif result.total > result.maxcount then
+			return string.format(" [%d/>%d]", result.current, result.total)
+		end
+	end
+
+	return string.format(" [%d/%d]", result.current, result.total)
+end
+
+-- Simplify the status line and add search count
+vim.o.statusline = "%{reg_recording()} %= %F %m%{v:lua.search_count()}"
 
 -- Enable cursorline
 vim.o.cursorline = true
