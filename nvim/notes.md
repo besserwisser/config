@@ -40,6 +40,7 @@ A personal collection of useful commands and concepts.
 - `f(w` - Jump to function arguments (inside parentheses).
 - `]m` / `[m` - Jump to the start of the **next/previous method** in languages like C, Java, or Python.
 - `]M` / `[M` - Jump to the end of the **next/previous method**.
+- `as` / `is` - Select **around** or **inside** a sentence.
 
 ---
 
