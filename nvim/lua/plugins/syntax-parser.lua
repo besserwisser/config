@@ -106,7 +106,6 @@ nvim_treesitter_configs.setup({
 			goto_next_start = {
 				["]m"] = "@function.outer",
 				["]f"] = "@call.outer",
-				["]d"] = "@conditional.outer",
 				["]o"] = "@loop.outer",
 				["]s"] = "@statement.outer",
 				["]a"] = "@parameter.outer",
@@ -154,7 +153,6 @@ nvim_treesitter_configs.setup({
 			goto_previous_start = {
 				["[m"] = "@function.outer",
 				["[f"] = "@call.outer",
-				["[d"] = "@conditional.outer",
 				["[o"] = "@loop.outer",
 				["[s"] = "@statement.outer",
 				["[a"] = "@parameter.outer",

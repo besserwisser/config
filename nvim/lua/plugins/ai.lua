@@ -22,7 +22,7 @@ vim.keymap.set({ "n", "v" }, "<leader>aa", function()
 	require("sidekick.cli").toggle({ focus = true, name = "copilot" })
 end)
 vim.keymap.set({ "n", "v" }, "<leader>ap", function()
-	require("sidekick.cli").select_prompt()
+	require("sidekick.cli").prompt()
 end)
 
 vim.api.nvim_create_autocmd("LspAttach", {

@@ -17,8 +17,8 @@ vim.o.cmdheight = 0
 
 -- Make line numbers default
 vim.o.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
+
+-- Make relative line numbers default
 vim.o.relativenumber = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
@@ -69,32 +69,31 @@ vim.o.swapfile = false
 -- avoid ugly wrapping of long lines
 vim.o.wrap = false
 
--- Function to show search count in statusline
+-- Optimized function to show search count in statusline
 _G.search_count = function()
-	local result = vim.fn.searchcount({ recompute = 1 })
+	-- Early exit if search highlighting is not active
+	if vim.v.hlsearch ~= 1 or vim.fn.getreg("/") == "" then
+		return ""
+	end
+
+	local result = vim.fn.searchcount({ recompute = 0, maxcount = 999 })
 	if vim.tbl_isempty(result) then
 		return ""
 	end
 
-	-- Check if we're currently in search mode or if search highlighting is active
-	local search_active = vim.v.hlsearch == 1 and vim.fn.getreg("/") ~= ""
-
-	-- Return empty if search is not active (e.g., after ESC or :noh)
-	if not search_active then
-		return ""
-	end
-
-	if result.incomplete == 1 then -- timed out
+	-- Handle incomplete results more efficiently
+	if result.incomplete == 1 then
 		return " [?/??]"
-	elseif result.incomplete == 2 then -- max count exceeded
-		if result.total > result.maxcount and result.current > result.maxcount then
-			return string.format(" [>%d/>%d]", result.current, result.total)
-		elseif result.total > result.maxcount then
-			return string.format(" [%d/>%d]", result.current, result.total)
-		end
 	end
 
-	return string.format(" [%d/%d]", result.current, result.total)
+	-- Handle max count exceeded cases with single condition
+	if result.incomplete == 2 then
+		local current_display = result.current > result.maxcount and (">" .. result.current) or result.current
+		local total_display = result.total > result.maxcount and (">" .. result.total) or result.total
+		return " [" .. current_display .. "/" .. total_display .. "]"
+	end
+
+	return " [" .. result.current .. "/" .. result.total .. "]"
 end
 
 -- Simplify the status line and add search count
@@ -142,13 +141,4 @@ vim.diagnostic.config({
 			return diagnostic_message[diagnostic.severity]
 		end,
 	},
-})
-
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("VisualEffectYank", { clear = true }),
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "Visual", timeout = 100 })
-	end,
 })
