@@ -5,7 +5,6 @@ vim.o.mouse = ""
 
 -- disable startup screen
 vim.o.shortmess = vim.o.shortmess .. "I"
-vim.notify(vim.o.shortmess)
 
 -- Enable the new Lua loader
 vim.loader.enable()
@@ -71,11 +70,11 @@ vim.o.swapfile = false
 -- avoid ugly wrapping of long lines
 vim.o.wrap = false
 
--- Import utils module and set up search count function
+-- Import utils module and set up search count function and recording status function
 _G.search_count = utils.search_count
-
+_G.recording_status = utils.recording_status
 -- Simplify the status line and add search count
-vim.o.statusline = "%{reg_recording()} %= %F %m%{v:lua.search_count()}"
+vim.o.statusline = "%{v:lua.recording_status()} %= %F %m%{v:lua.search_count()}"
 
 -- Enable cursorline
 vim.o.cursorline = true
