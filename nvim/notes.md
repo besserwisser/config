@@ -10,6 +10,9 @@ A personal collection of useful commands and concepts.
 
 - Put your right index finger on `j` and the middle finger on `k` for easy navigation.
 - `<C-f>` and `<C-b>` - **Page down** and **page up**.
+- `<C-e>` and `<C-y>` - **Scroll down** and **scroll up** one line without moving the cursor.
+- `H`, `M`, `L` - Move the cursor to the **top**, **middle**, or **bottom** of the screen.
+- `zz` - **Center** the current line in the window. Also works with `zt` (top) and `zb` (bottom).
 
 ### Editing
 
@@ -46,6 +49,7 @@ A personal collection of useful commands and concepts.
 - `o` - Toggle the cursor between the **beginning and end** of the visual selection.
 - **Text Objects** - Use text objects like `iw` (inside word) or `a"` (around quotes) to quickly change or expand your visual selection.
 - `an` / `in` - Select **around** or **inside** a node in languages like XML or HTML.
+- `u` / `U` - **Lowercase** or **uppercase** the selected text.
 
 ---
 
@@ -63,8 +67,13 @@ A personal collection of useful commands and concepts.
 ### Files & Buffers
 
 - `:enew` - Create a **new, unnamed buffer** for scratch work.
+- `:view {file}` - Open a file in **read-only mode**.
 - `:e!` - **Reload the file**, discarding all unsaved changes.
+- `:e #` - Open alternate file (the last file you were editing).
 - `:b` - Switch between open **buffers**. Use `<Tab>` to complete buffer names.
+- `:r {file}` - Read file in
+- `:r {cmd}` - Read the output of a shell command into the current buffer.
+- `:x` - Saves, if there are changes, and exits (same as `:wq`). You can also use `ZZ` in normal mode for a similar effect.
 
 ### The `:global` Command
 
