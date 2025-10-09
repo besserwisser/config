@@ -27,6 +27,7 @@ A personal collection of useful commands and concepts.
 - `d/pattern<CR>`, `c/pattern<CR>`, `y/pattern<CR>` - **Delete**, **change**, or **yank** from the cursor to the next occurrence of "pattern".
 - `<C-b>$` - Move to end of line for all lines in visual block mode. Can be combined with `A` to append text at the end of multiple lines for example.
 - `J` - **Join** the current line with the next line, adding a space between them. Also works with a count (e.g., `3J` joins three lines). Also works in visual mode. Can also be used to make multi line arrays and objects in one line.
+- `gv` - **Reselect** the previous visual selection.
 
 ### Motions
 
@@ -64,6 +65,8 @@ A personal collection of useful commands and concepts.
 - `C-f>` - Open the command-line window for easier editing of long commands. Press `<C-c>` to exit.
 - `/\v` - Start a search with **very magic** mode, where most characters are treated as special regex characters without needing to escape them.
 - `/\c` - Start a search that is **case-insensitive** or `/\C` for **case-sensitive**.
+- `:/start/,/end/s/old/new/g` - Perform a **substitution** between lines matching "start" and "end".
+- `:.,+5s/old/new/g` - Perform a substitution from the current line (`.`) to 5 lines below (`+5`).
 
 ### Files & Buffers
 
