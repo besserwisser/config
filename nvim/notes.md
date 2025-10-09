@@ -64,6 +64,7 @@ A personal collection of useful commands and concepts.
 ## Command-Line Mode
 
 - `C-f>` - Open the command-line window for easier editing of long commands. Press `<C-c>` to exit.
+- `/\v` - Start a search with **very magic** mode, where most characters are treated as special regex characters without needing to escape them.
 
 ### Files & Buffers
 
