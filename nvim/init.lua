@@ -14,5 +14,4 @@ require("plugins.debugging")
 require("plugins.ai")
 require("plugins.preview")
 
-vim.cmd("packadd nohlsearch")
 vim.cmd("packadd cfilter")
