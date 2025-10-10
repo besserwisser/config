@@ -84,13 +84,17 @@ M.show_tip = function()
 
 	--  Create a new scratch buffer
 	local buf = vim.api.nvim_create_buf(false, true) -- `false` for not listed, `true` for scratch
+
+	-- Save current position to avoid adding to jump list
 	vim.api.nvim_set_current_buf(buf)
 
 	--  Set options for the dashboard buffer to make it feel special
 	vim.bo.buftype = "nofile"
-	vim.bo.bufhidden = "hide"
-	vim.bo.swapfile = false
+	vim.bo.bufhidden = "wipe" -- Wipe buffer when hidden to avoid jump list issues
 	vim.bo.filetype = "markdown" -- Custom filetype for potential syntax/statusline rules
+
+	-- Clear jump list entry for this buffer
+	vim.cmd("clearjumps")
 
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, random_tip)
 end
