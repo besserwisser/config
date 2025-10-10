@@ -13,6 +13,7 @@ A personal collection of useful commands and concepts.
 - `zz` - **Center** the current line in the window. Also works with `zt` (top) and `zb` (bottom).
 - `'m` and `m - Jump to beginning of mark line or exact position of mark.
 - `g;` and `g,` - Jump to the next or previous change in the file.
+- `gx` - Open the URL under the cursor in your default web browser.
 
 ### Editing
 
