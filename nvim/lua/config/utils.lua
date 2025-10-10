@@ -43,30 +43,15 @@ M.show_tip = function()
 
 	-- Parse tips with their context
 	local tips = {}
-	local current_h1 = ""
 	local current_h2 = ""
-	local current_h3 = ""
 
 	for _, line in ipairs(lines) do
-		if line:match("^# ") then
-			current_h1 = line
-			current_h2 = ""
-			current_h3 = ""
-		elseif line:match("^## ") then
+		if line:match("^## ") then
 			current_h2 = line
-			current_h3 = ""
-		elseif line:match("^### ") then
-			current_h3 = line
 		elseif line:match("^- ") then
 			local context = {}
-			if current_h1 ~= "" then
-				table.insert(context, current_h1)
-			end
 			if current_h2 ~= "" then
 				table.insert(context, current_h2)
-			end
-			if current_h3 ~= "" then
-				table.insert(context, current_h3)
 			end
 			table.insert(context, "") -- Empty line for separation
 			table.insert(context, line)
