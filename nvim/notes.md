@@ -12,10 +12,11 @@ A personal collection of useful commands and concepts.
 - `H`, `M`, `L` - Move the cursor to the **top**, **middle**, or **bottom** of the screen.
 - `zz` - **Center** the current line in the window. Also works with `zt` (top) and `zb` (bottom).
 - `'m` and `m - Jump to beginning of mark line or exact position of mark.
+- `g;` and `g,` - Jump to the next or previous change in the file.
 
 ### Editing
 
-- `yy` - **Copy (yank)** the entire current line.
+- `yy` / `Y` - **Copy (yank)** the entire current line.
 - `.` - **Repeat** the last change (e.g., a deletion, paste, or command).
 - `cib` - **Change inside block** (parentheses). Deletes content inside `()` and enters insert mode.
 - `cgn` - **Change** the **next search match**. Can be repeated with `.`.
@@ -67,6 +68,7 @@ A personal collection of useful commands and concepts.
 - `/\c` - Start a search that is **case-insensitive** or `/\C` for **case-sensitive**.
 - `:/start/,/end/s/old/new/g` - Perform a **substitution** between lines matching "start" and "end".
 - `:.,+5s/old/new/g` - Perform a substitution from the current line (`.`) to 5 lines below (`+5`).
+- `:s/\<select\|from\|where\>/\U&/g` - Uppercase SQL keywords in the current line.
 
 ### Files & Buffers
 
@@ -74,23 +76,31 @@ A personal collection of useful commands and concepts.
 - `:view {file}` - Open a file in **read-only mode**.
 - `:e!` - **Reload the file**, discarding all unsaved changes.
 - `:e #` - Open alternate file (the last file you were editing).
-- `:b` - Switch between open **buffers**. Use `<Tab>` to complete buffer names.
+- `:b ` - Switch between open **buffers**. Use `<Tab>` to complete buffer names.
+- `:ls` - List **open buffers**
+- `:bn` / `:bp` - Switch to **next** or **previous** buffer
+- `<C-^>` - Toggle between the current and the last edited buffer.
 - `:r {file}` - Read file in
 - `:r {cmd}` - Read the output of a shell command into the current buffer.
 - `:x` - Saves, if there are changes, and exits (same as `:wq`). You can also use `ZZ` in normal mode for a similar effect.
+- `:args {file1} {file2} ...` - Open multiple files as arguments.
+- `:bufdo {cmd}` - Execute a command in all open buffers.
 
-### The `:global` Command
+## The `:global` Command
 
 The `:global` command (`:g`) executes a command on all lines matching a pattern. Use `:vglobal` (`:v`) for all lines **not** matching.
 
 - `:g/pattern/d` - **Delete** all lines containing "pattern".
 - `:g/pattern/norm {cmd}` - Execute a **normal mode command** on each matching line.
+- `:g/pattern/s/old/new/g` - Perform a **substitution** on all lines matching "pattern".
+- `:g/await/?^function?s/function/async function/` - Make all functions containing "await" async.
 
 ## Registers & Macros
 
 - `:reg` - **Show all registers** and their content.
 - `"_` - The **black hole register**. Use it to delete text without affecting any other register (e.g., `"_dd`).
 - `"0` - The **yank register**. Always contains the last text you yanked with `y`.
+- `a-z` - **Named registers**. Use them to store text for later use (e.g., `"ayy` to yank a line into register 'a', then `"ap` to paste it).
 - `"1`-`"9` - The **delete registers**. A history of your last 9 multi-line deletions.
 - `"-"` - The **small delete register**. Contains text from deletions of less than one line.
 - `"/"` - The **search register**. Contains your last search pattern.
@@ -101,8 +111,30 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 
 - `<C-w>H` - **Move the current split** to the far left, making it a vertical split. Works with `H` (left), `J` (bottom), `K` (top), and `L` (right).
 - `:vert {cmd}` - **Execute a command** and open its result in a **vertical split**. For example, `:vert help marks`.
+- `<C-w>x` - **Swap** the current window with the next one.
+- `<C-w>=` - **Equalize** the size of all open windows.
+- `<C-w>>` / `<C-w><` - **Increase** or **decrease** the width of the current window.
+- `:windo {cmd}` - Execute a command in **all windows**. For example, `:windo diffthis` to show diff between files.
 
 ## Folding
 
 - `za` - **Toggle** the fold at the current line.
 - `zA` - **Recursively toggle** all folds under the cursor.
+
+### Quickfix List
+
+- `:vimgrep /pattern/ **/*.ts` - Search for a pattern in files and populate the quickfix list.
+- `:Cfilter /pattern/` - Filter the quickfix list to only show entries matching "pattern".
+- `:Cfilter! /pattern/` - Filter the quickfix list to exclude entries matching "pattern".
+- `:lvimgrep /pattern/ **/*.ts` - Search for a pattern in files and populate the location list for the current window.
+- `:lopen` / `:copen` - Open the location list or quickfix list window.
+- `]l` / `[l` - Jump to the next or previous entry in the location list.
+
+### Args
+
+- `:args *.ts` - Load all `.ts` files in the current directory into the argument list.
+- `:argdo %s/old/new/g | update` - Perform a substitution in all files in the argument list and save changes.
+
+## Vim Regex Modes
+
+- `\V` - Very nomagic mode. All characters are treated as literal characters except `\`.

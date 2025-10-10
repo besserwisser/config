@@ -16,3 +16,4 @@ require("plugins.preview")
 require("plugins.tips")
 
 vim.cmd("packadd nohlsearch")
+vim.cmd("packadd cfilter")
