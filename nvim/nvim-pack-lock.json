@@ -6,11 +6,11 @@
       "version": "1.0.0 - 2.0.0"
     },
     "conform.nvim": {
-      "rev": "9d859cb",
+      "rev": "fbcb4fa",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "markdown-preview.nvim": {
-      "rev": "9beccee",
+      "rev": "a923f5f",
       "src": "https://github.com/iamcco/markdown-preview.nvim"
     },
     "mason-tool-installer.nvim": {
@@ -22,7 +22,7 @@
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "neovim-tips": {
-      "rev": "6c2d8e3",
+      "rev": "523156e",
       "src": "https://github.com/saxon1964/neovim-tips"
     },
     "nui.nvim": {
@@ -38,7 +38,7 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "e688b48",
+      "rev": "cc2f5f2",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -58,15 +58,15 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "sidekick.nvim": {
-      "rev": "e869205",
+      "rev": "9ef38db",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {
-      "rev": "bfe8c26",
+      "rev": "dae80fb",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tokyonight.nvim": {
-      "rev": "4d15961",
+      "rev": "00d92e6",
       "src": "https://github.com/folke/tokyonight.nvim"
     }
   }

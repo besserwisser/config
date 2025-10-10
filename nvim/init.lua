@@ -13,7 +13,6 @@ require("plugins.formatting")
 require("plugins.debugging")
 require("plugins.ai")
 require("plugins.preview")
-require("plugins.tips")
 
 vim.cmd("packadd nohlsearch")
 vim.cmd("packadd cfilter")
