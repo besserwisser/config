@@ -1,4 +1,4 @@
-vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "popup" }
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
 
 -- based on https://github.com/konradmalik/neovim-flake/blob/6dba374af89a294c976d72615cca6cfca583a9f2/config/native/lua/pde/lsp/completion.lua
 local docs_debounce_ms = 100
