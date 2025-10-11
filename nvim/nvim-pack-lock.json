@@ -38,7 +38,7 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "cc2f5f2",
+      "rev": "3a274c3",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -58,15 +58,15 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "sidekick.nvim": {
-      "rev": "9ef38db",
+      "rev": "f908fec",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {
-      "rev": "dae80fb",
+      "rev": "d91fc7d",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tokyonight.nvim": {
-      "rev": "00d92e6",
+      "rev": "d14614c",
       "src": "https://github.com/folke/tokyonight.nvim"
     }
   }
