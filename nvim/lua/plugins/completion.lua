@@ -21,7 +21,7 @@
 -- 	},
 -- })
 --
-vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "popup", "preview" }
+vim.o.completeopt = { "menuone", "noselect", "fuzzy", "popup" }
 vim.o.autocomplete = true
 
 local docs_debounce_ms = 100
@@ -64,8 +64,6 @@ local function enable_completion_documentation(client, augroup, bufnr)
 					client:request(
 						vim.lsp.protocol.Methods.completionItem_resolve,
 						completion_item,
-						---@param err lsp.ResponseError
-						---@param result any
 						function(err, result)
 							if err ~= nil then
 								vim.notify("client " .. client.id .. vim.inspect(err), vim.log.levels.ERROR)
