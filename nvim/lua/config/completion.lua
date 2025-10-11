@@ -1,5 +1,4 @@
 vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "popup" }
-vim.o.autocomplete = true
 
 -- based on https://github.com/konradmalik/neovim-flake/blob/6dba374af89a294c976d72615cca6cfca583a9f2/config/native/lua/pde/lsp/completion.lua
 local docs_debounce_ms = 100
@@ -97,5 +96,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			local augroup = vim.api.nvim_create_augroup("CompletionDocumentation" .. client.id, { clear = true })
 			enable_completion_documentation(client, augroup, args.buf)
 		end
+	end,
+})
+
+-- disable autocompletion in certain buffer types
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = vim.api.nvim_create_augroup("EnableAutocompletion", { clear = true }),
+	callback = function()
+		vim.o.autocomplete = vim.bo.buftype ~= "prompt"
 	end,
 })
