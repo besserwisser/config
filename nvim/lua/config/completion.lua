@@ -103,6 +103,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = vim.api.nvim_create_augroup("EnableAutocompletion", { clear = true }),
 	callback = function()
-		vim.o.autocomplete = vim.bo.buftype ~= "prompt"
+		vim.bo.autocomplete = vim.bo.buftype == ""
 	end,
 })
