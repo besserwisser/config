@@ -1,4 +1,5 @@
 vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "popup" }
+vim.o.autocomplete = true
 
 -- based on https://github.com/konradmalik/neovim-flake/blob/6dba374af89a294c976d72615cca6cfca583a9f2/config/native/lua/pde/lsp/completion.lua
 local docs_debounce_ms = 100
@@ -86,11 +87,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				autotrigger = true,
 			})
 			-- set trigger characters for better completion experience
-			local chars = {}
-			for i = 32, 126 do
-				table.insert(chars, string.char(i))
-			end
-			client.server_capabilities.completionProvider.triggerCharacters = chars
+			-- local chars = {}
+			-- for i = 32, 126 do
+			-- 	table.insert(chars, string.char(i))
+			-- end
+			-- client.server_capabilities.completionProvider.triggerCharacters = chars
 
 			-- Enable completion documentation
 			local augroup = vim.api.nvim_create_augroup("CompletionDocumentation" .. client.id, { clear = true })
