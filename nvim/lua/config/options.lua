@@ -95,6 +95,9 @@ require("vim._extui").enable({
 vim.o.foldmethod = "expr" -- Use expression for folding
 vim.o.foldlevel = 99 -- Start with all folds open
 
+-- Set border of pum windows
+vim.o.pumborder = "single"
+
 -- Diagnostic Config
 -- See :help vim.diagnostic.Opts
 vim.diagnostic.config({

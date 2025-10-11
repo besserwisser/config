@@ -21,11 +21,12 @@ require("blink.cmp").setup({
 	},
 })
 
--- vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect", "fuzzy", "popup" }
+--
+-- vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "popup", "preview" }
 --
 -- vim.api.nvim_create_autocmd("LspAttach", {
-
---	group = vim.api.nvim_create_augroup("EnableNativeCompletion", { clear = true }),
+--
+-- 	group = vim.api.nvim_create_augroup("EnableNativeCompletion", { clear = true }),
 -- 	desc = "Enable vim.lsp.completion and documentation",
 -- 	callback = function(args)
 -- 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
