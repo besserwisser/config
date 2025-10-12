@@ -82,6 +82,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client:supports_method("textDocument/completion") then
+			-- Trigger completion on any character
+			local chars = {}
+			for i = 32, 126 do
+				table.insert(chars, string.char(i))
+			end
+			client.server_capabilities.completionProvider.triggerCharacters = chars
+
+			-- Enable native LSP completion
 			vim.lsp.completion.enable(true, client.id, args.buf, {
 				autotrigger = true,
 				convert = function(item)
@@ -101,10 +109,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+-- At the moment, this slows down completion too much to be useful. Not sure why. Try again later. 2025-10-12
 -- disable autocompletion in certain buffer types
-vim.api.nvim_create_autocmd("BufEnter", {
-	group = vim.api.nvim_create_augroup("EnableAutocompletion", { clear = true }),
-	callback = function()
-		vim.bo.autocomplete = vim.bo.buftype == ""
-	end,
-})
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	group = vim.api.nvim_create_augroup("EnableAutocompletion", { clear = true }),
+-- 	callback = function()
+-- 		vim.o.autocompletedelay = 100
+-- 		vim.bo.autocomplete = vim.bo.buftype == ""
+-- 	end,
+-- })
