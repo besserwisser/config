@@ -10,7 +10,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "difftool.nvim": {
-      "rev": "2c7e122"
+      "rev": "862d89c"
     },
     "markdown-preview.nvim": {
       "rev": "a923f5f",
@@ -61,11 +61,11 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "sidekick.nvim": {
-      "rev": "f555379",
+      "rev": "cebcd44",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {
-      "rev": "aaab014",
+      "rev": "38fbb94",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tokyonight.nvim": {
