@@ -10,7 +10,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "difftool.nvim": {
-      "rev": "862d89c"
+      "rev": "3d0b478"
     },
     "markdown-preview.nvim": {
       "rev": "a923f5f",
