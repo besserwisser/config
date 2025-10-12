@@ -95,6 +95,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 
+			-- only enable autocomplete in normal buffers
 			vim.bo.autocomplete = vim.bo.buftype == ""
 
 			-- enable documentation on completion item selection
