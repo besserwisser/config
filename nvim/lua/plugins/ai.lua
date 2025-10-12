@@ -24,6 +24,9 @@ end)
 vim.keymap.set({ "n", "v" }, "<leader>ap", function()
 	require("sidekick.cli").prompt()
 end)
+vim.keymap.set("t", "<C-w>p", function()
+	require("sidekick.cli").focus({ focus = false })
+end)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("EnableInlineCompletion", { clear = true }),

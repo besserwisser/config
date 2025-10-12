@@ -9,6 +9,9 @@
       "rev": "fbcb4fa",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "difftool.nvim": {
+      "rev": "2c7e122"
+    },
     "markdown-preview.nvim": {
       "rev": "a923f5f",
       "src": "https://github.com/iamcco/markdown-preview.nvim"
@@ -38,7 +41,7 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "3a274c3",
+      "rev": "ac98db2",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -58,11 +61,11 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "sidekick.nvim": {
-      "rev": "f908fec",
+      "rev": "f555379",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {
-      "rev": "d91fc7d",
+      "rev": "aaab014",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tokyonight.nvim": {
