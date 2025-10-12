@@ -16,4 +16,3 @@ require("plugins.ai")
 require("plugins.preview")
 
 vim.cmd("packadd cfilter")
-vim.cmd("packadd nvim.difftool")

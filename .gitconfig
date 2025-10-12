@@ -30,11 +30,3 @@
 
 [alias]
   jump = "!$(brew --prefix git)/share/git-core/contrib/git-jump/git-jump"
-
-[diff]
-  tool = nvim_difftool
-	 # needs packadd difftool in neovim
-
-[difftool "nvim_difftool"]
- 	cmd = nvim -c \"DiffTool $LOCAL $REMOTE\"
-	 # use it for prs as well: git difftool -d main
