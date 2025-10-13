@@ -6,7 +6,7 @@ M.search_count = function()
 	if vim.v.hlsearch == 1 then
 		local ok, searchcount = pcall(vim.fn.searchcount)
 
-		if ok and searchcount["total"] > 0 then
+		if ok and searchcount["total"] and searchcount["total"] > 0 then
 			return " [" .. searchcount["current"] .. "∕" .. searchcount["total"] .. "]"
 		end
 	end
