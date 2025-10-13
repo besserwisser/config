@@ -4,10 +4,6 @@
       "rev": "fbcb4fa",
       "src": "https://github.com/stevearc/conform.nvim"
     },
-    "hardtime.nvim": {
-      "rev": "b4e4319",
-      "src": "https://github.com/m4xshen/hardtime.nvim"
-    },
     "markdown-preview.nvim": {
       "rev": "a923f5f",
       "src": "https://github.com/iamcco/markdown-preview.nvim"

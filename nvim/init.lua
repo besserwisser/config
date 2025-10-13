@@ -13,7 +13,6 @@ require("plugins.formatting")
 require("plugins.debugging")
 require("plugins.ai")
 require("plugins.preview")
-require("plugins.hardtime")
 
 vim.cmd("packadd cfilter")
 vim.cmd("packadd nvim.undotree")
