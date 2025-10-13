@@ -23,7 +23,7 @@ This directory contains configuration files and scripts for customizing your dev
 
 - At the moment I am mainly using it for js/ts
 - I use nightly build with vim.pack
-- Stick to blink.nvim for now, since native completion doesn't look or perform as well
+- Using neovims native lsp and completion
 - Organise everything based on feature, e.g. put vim.pack.add together with plugin config and keybinds for this plugin in one file (e.g. fuzz-find.lua)
 
 ---
@@ -34,5 +34,6 @@ This directory contains configuration files and scripts for customizing your dev
   Configures Git behavior and appearance. Notable settings include:
   - Uses Neovim (`nvim`) as the default editor and merge tool.
   - Defines a custom alias (`jump`) for quickly navigating Git repositories.
+  - Use difftool for PR reviews.
 
 ---
