@@ -9,6 +9,7 @@ A personal collection of useful commands and concepts.
 - `<C-e>` and `<C-y>` - **Scroll down** and **scroll up** one line without moving the cursor.
 - `H`, `M`, `L` - Move the cursor to the **top**, **middle**, or **bottom** of the screen.
 - `zz` - **Center** the current line in the window. Also works with `zt` (top) and `zb` (bottom).
+- `-` and `+` - Move to the **previous** or **next** line and go to first non-whitespace character of the line (like pressing `k` / `j` and `^`.
 
 ## Word and Character Movement
 
