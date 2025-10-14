@@ -30,7 +30,8 @@ A personal collection of useful commands and concepts.
 - `]M` / `[M` - Jump to the end of the **next/previous method**.
 - `[{` / `]}` - Jump to the previous/next `{` brace from inside a code block.
 - `[(` / `])` - Jump to the previous/next `(` from inside a code block.
-- `][` / `[]` - Jump to next/previous `{` in the first column.
+- `]]` / `[[` - Jump to next/previous `{` in the first column.
+- `][` / `[]` - Jump to next/previous `}` in the first column.
 
 ## Basic Editing
 
