@@ -2,6 +2,7 @@ local utils = require("config.utils")
 
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
 vim.o.complete = "o"
+vim.o.pumheight = 15
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("EnableNativeCompletion", { clear = true }),
