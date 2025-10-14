@@ -28,6 +28,8 @@ A personal collection of useful commands and concepts.
 - `f(w` - Jump to function arguments (inside parentheses).
 - `]m` / `[m` - Jump to the start of the **next/previous method** in languages like C, Java, or Python.
 - `]M` / `[M` - Jump to the end of the **next/previous method**.
+- `[{` / `]}` - Jump to the start of the **previous/next code block** (e.g., `{}` in C-like languages or indentation blocks in Python).
+- `[(` / `])` - Jump to the end of the **previous/next code block**.
 
 ## Basic Editing
 
