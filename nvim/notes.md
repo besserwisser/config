@@ -81,7 +81,8 @@ A personal collection of useful commands and concepts.
 
 ## Search
 
-- `C-f>` - Open the command-line window for easier editing of long commands. Press `<C-c>` to exit.
+- `<C-f>` - Open the command-line window for easier editing of long commands. Press `<C-c>` to exit.
+- `<C-p>` / `<C-n>` - Navigate through **command-line history** (previous/next).
 - `/\v` - Start a search with **very magic** mode, where most characters are treated as special regex characters without needing to escape them.
 - `/\c` - Start a search that is **case-insensitive** or `/\C` for **case-sensitive**.
 - `\V` - Very nomagic mode. All characters are treated as literal characters except `\`.
