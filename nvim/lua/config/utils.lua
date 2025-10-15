@@ -49,13 +49,13 @@ M.show_tip = function()
 		if line:match("^## ") then
 			current_h2 = line
 		elseif line:match("^- ") then
-			local context = {}
+			local tip = {}
 			if current_h2 ~= "" then
-				table.insert(context, current_h2)
+				table.insert(tip, current_h2)
 			end
-			table.insert(context, "") -- Empty line for separation
-			table.insert(context, line)
-			table.insert(tips, context)
+			table.insert(tip, "") -- Empty line for separation
+			table.insert(tip, line)
+			table.insert(tips, tip)
 		end
 	end
 
