@@ -41,11 +41,11 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "sidekick.nvim": {
-      "rev": "d679927",
+      "rev": "7185e08",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {
-      "rev": "b8d838d",
+      "rev": "454ba02",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tokyonight.nvim": {
