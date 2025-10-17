@@ -10,7 +10,7 @@ tokyonight.setup({
 	},
 })
 
-vim.cmd([[colorscheme tokyonight-storm]])
+vim.cmd([[colorscheme tokyonight-moon]])
 
 -- Unified transparent highlight groups
 local transparent_groups = {
