@@ -104,6 +104,7 @@ M.enable_completion_documentation = function(client, augroup, bufnr)
 			timer:stop()
 
 			local completion_item = vim.tbl_get(vim.v.completed_item, "user_data", "nvim", "lsp", "completion_item")
+
 			if not completion_item then
 				vim.notify("no completion item", vim.log.levels.WARN)
 				return
@@ -128,10 +129,12 @@ M.enable_completion_documentation = function(client, augroup, bufnr)
 								return
 							end
 
+							local description = vim.tbl_get(result, "labelDetails", "description") or ""
 							local docs = vim.tbl_get(result, "documentation", "value")
-							if not docs then
-								vim.notify("no documentation", vim.log.levels.INFO)
-								return
+
+							-- combine label description and documentation. De description shows where the item will be imported from, at least in tsserver
+							if description ~= "" then
+								docs = description .. "\n\n" .. (docs or "")
 							end
 
 							local wininfo = vim.api.nvim__complete_set(complete_info.selected, { info = docs })

@@ -78,6 +78,7 @@ A personal collection of useful commands and concepts.
 - `<C-x><C-s>` - **Signature Help**. When an LSP is active, this can show function parameter information. Note: `<C-s>` alone often freezes the terminal (XOFF).
 - `<C-s>` - Shows function signature help when an LSP is active.
 - `<C-o>{cmd}` - Execute a single normal mode command while in insert mode. For example, `<C-o>dw` deletes a word without leaving insert mode.
+- `<C-x><C-f>` - **File name completion**. Start typing a file path and use this shortcut to auto-complete it.
 
 ## Search
 
