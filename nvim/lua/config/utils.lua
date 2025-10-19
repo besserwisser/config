@@ -130,11 +130,15 @@ M.enable_completion_documentation = function(client, augroup, bufnr)
 							end
 
 							local description = vim.tbl_get(result, "labelDetails", "description") or ""
-							local docs = vim.tbl_get(result, "documentation", "value")
+							local docs = vim.tbl_get(result, "documentation", "value") or ""
 
-							-- combine label description and documentation. De description shows where the item will be imported from, at least in tsserver
+							-- combine label description and documentation. The description shows where the item will be imported from, at least in tsserver
 							if description ~= "" then
 								docs = description .. "\n\n" .. (docs or "")
+							end
+
+							if docs == "" then
+								return
 							end
 
 							local wininfo = vim.api.nvim__complete_set(complete_info.selected, { info = docs })
