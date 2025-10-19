@@ -134,7 +134,12 @@ M.enable_completion_documentation = function(client, augroup, bufnr)
 
 							-- combine label description and documentation. The description shows where the item will be imported from, at least in tsserver
 							if description ~= "" then
-								docs = description .. "\n\n" .. (docs or "")
+								local formattedDescription = "*" .. description .. "*"
+								if docs ~= "" then
+									docs = formattedDescription .. "\n\n" .. docs
+								else
+									docs = formattedDescription
+								end
 							end
 
 							if docs == "" then
