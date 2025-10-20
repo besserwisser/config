@@ -167,3 +167,7 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 - `:Cfilter! /pattern/` - Filter the quickfix list to exclude entries matching "pattern".
 - `:lopen` / `:copen` - Open the location list or quickfix list window.
 - `]l` / `[l` - Jump to the next or previous entry in the location list.
+
+## Terminal Mode
+
+- `<C-\><C-n>` - Exit terminal mode and return to normal mode.
