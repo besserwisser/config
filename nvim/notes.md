@@ -79,6 +79,9 @@ A personal collection of useful commands and concepts.
 - `<C-s>` - Shows function signature help when an LSP is active.
 - `<C-o>{cmd}` - Execute a single normal mode command while in insert mode. For example, `<C-o>dw` deletes a word without leaving insert mode.
 - `<C-x><C-f>` - **File name completion**. Start typing a file path and use this shortcut to auto-complete it.
+- `<C-h>` - **Delete** the character before the cursor (like Backspace).
+- `<C-w>` - **Delete** the word before the cursor.
+- `<C-u>` - **Delete** from the cursor to the beginning of the line.
 
 ## Search
 
