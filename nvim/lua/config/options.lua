@@ -66,7 +66,7 @@ vim.o.undofile = true
 vim.o.winborder = "rounded"
 
 -- space when scrolling down or up
-vim.o.scrolloff = 10
+vim.o.scrolloff = 20
 
 -- Disable swap files
 vim.o.swapfile = false
