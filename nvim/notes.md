@@ -114,6 +114,7 @@ A personal collection of useful commands and concepts.
 - `:bn` / `:bp` - Switch to **next** or **previous** buffer
 - `<C-^>` - Toggle between the current and the last edited buffer.
 - `:bufdo {cmd}` - Execute a command in all open buffers.
+- `:bro o` - Browse older buffers and open selected one.
 
 ## Argument List
 
