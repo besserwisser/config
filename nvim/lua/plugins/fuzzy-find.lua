@@ -25,7 +25,7 @@ snacks.setup({
 		sources = {
 			explorer = {
 				layout = {
-					preset = "telescope",
+					preset = "ivy",
 					preview = true,
 				},
 				auto_close = true,
