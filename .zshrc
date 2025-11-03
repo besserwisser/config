@@ -246,7 +246,7 @@ export NX_TUI=false
 # fzf auto completion
 
 # fd hides gitignored directories by default, so we use it to find directories
-export FZF_ALT_C_COMMAND="fd --type d"
+export FZF_ALT_C_COMMAND="fd --type d --exclude Library"
 source <(fzf --zsh)
 
 # use fzf to find file to open in nvim
