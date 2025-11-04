@@ -61,6 +61,7 @@ A personal collection of useful commands and concepts.
 - `gn` / `gN` - **Select** the **next/previous search match** in visual mode.
 - **Text Objects** - Use text objects like `iw` (inside word) or `a"` (around quotes) to quickly change or expand your visual selection.
 - `an` / `in` - Select **around** or **inside** a node in languages like XML or HTML.
+- `^vg_` - Select from the first non-blank character to the last non-blank character of the line.
 
 ## Visual Block Mode
 
