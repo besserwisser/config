@@ -66,7 +66,7 @@ keymap("n", "<leader>gl", function() snacks.picker.git_log() end, { desc = "Git 
 keymap("n", "<leader>gL", function() snacks.picker.git_log_line() end, { desc = "Git Log Line" })
 keymap("n", "<leader>gs", function() snacks.picker.git_status() end, { desc = "Git Status" })
 keymap("n", "<leader>gS", function() snacks.picker.git_stash() end, { desc = "Git Stash" })
-keymap("n", "<leader>gd", function() snacks.picker.git_diff() end, { desc = "Git Diff (Hunks)" })
+keymap("n", "<leader>gd", function() snacks.picker.git_diff({ group = true }) end, { desc = "Git Diff (Hunks)" })
 keymap("n", "<leader>gf", function() snacks.picker.git_log_file() end, { desc = "Git Log File" })
 
 -- Grep

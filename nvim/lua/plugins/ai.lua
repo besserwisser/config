@@ -1,12 +1,8 @@
-vim.keymap.set({ "i", "n" }, "<tab>", function()
-	-- if you are using Neovim's native inline completions
-	if vim.lsp.inline_completion.get() then
-		return
+vim.keymap.set("i", "<Tab>", function()
+	if not vim.lsp.inline_completion.get() then
+		return "<Tab>"
 	end
-	-- any other things (like snippets) you want to do on <tab> go here.
-	-- fall back to normal tab
-	return "<tab>"
-end, { expr = true })
+end, { expr = true, desc = "Accept the current inline completion" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("EnableInlineCompletion", { clear = true }),

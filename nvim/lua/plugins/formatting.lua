@@ -5,7 +5,7 @@ vim.pack.add({
 require("conform").setup({
 	format_on_save = {
 		lsp_format = "first",
-		timeout_ms = 1000,
+		timeout_ms = 3000,
 	},
 	formatters_by_ft = {
 		javascript = { "prettierd" },
