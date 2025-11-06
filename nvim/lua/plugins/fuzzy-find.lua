@@ -53,6 +53,7 @@ keymap("n", "<leader>e", function() snacks.explorer() end, { desc = "File Explor
 
 -- find
 keymap("n", "<leader>fb", function() snacks.picker.buffers() end, { desc = "Buffers" })
+keymap("n", "<leader>fB", function() snacks.picker.buffers({ modified = true }) end, { desc = "Modified Buffers" })
 keymap("n", "<leader>fc", function() snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
 	{ desc = "Find Config File" })
 keymap("n", "<leader>ff", function() snacks.picker.files() end, { desc = "Find Files" })
