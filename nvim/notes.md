@@ -112,6 +112,7 @@ A personal collection of useful commands and concepts.
 
 - `:b ` - Switch between open **buffers**. Use `<Tab>` to complete buffer names.
 - `:ls` - List **open buffers**
+- `:ls +` - List **modified buffers**.
 - `:bn` / `:bp` - Switch to **next** or **previous** buffer
 - `<C-^>` - Toggle between the current and the last edited buffer.
 - `:bufdo {cmd}` - Execute a command in all open buffers.
