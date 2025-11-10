@@ -118,6 +118,7 @@ A personal collection of useful commands and concepts.
 - `<C-^>` - Toggle between the current and the last edited buffer.
 - `:bufdo {cmd}` - Execute a command in all open buffers.
 - `:bro o` - Browse older buffers and open selected one.
+- `<C-6>` - Toggle between the current and the last edited buffer (same as `<C-^>`).
 
 ## Argument List
 
