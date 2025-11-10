@@ -1,7 +1,7 @@
 {
   "plugins": {
     "conform.nvim": {
-      "rev": "26c02e1",
+      "rev": "cde4da5",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "markdown-preview.nvim": {
@@ -17,7 +17,7 @@
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "nvim-dap": {
-      "rev": "e97dc47",
+      "rev": "4c0e3a9",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-ui": {
@@ -25,7 +25,7 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "a89bfcf",
+      "rev": "2010fc6",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -45,11 +45,11 @@
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {
-      "rev": "da14fac",
+      "rev": "dec29f5",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tokyonight.nvim": {
-      "rev": "b13cfc1",
+      "rev": "5da1b76",
       "src": "https://github.com/folke/tokyonight.nvim"
     }
   }
