@@ -1,8 +1,16 @@
 {
   "plugins": {
     "conform.nvim": {
-      "rev": "cde4da5",
+      "rev": "1bf8b5b9caee51507aa51eaed3da5b0f2595c6b9",
       "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "github-nvim-theme": {
+      "rev": "c106c9472154d6b2c74b74565616b877ae8ed31d",
+      "src": "https://github.com/projekt0n/github-nvim-theme"
+    },
+    "hardtime.nvim": {
+      "rev": "b4e431934af1fe224a3a801f632c008278cb7628",
+      "src": "https://github.com/m4xshen/hardtime.nvim"
     },
     "markdown-preview.nvim": {
       "rev": "a923f5f",
@@ -13,11 +21,11 @@
       "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
     },
     "mason.nvim": {
-      "rev": "ad7146a",
+      "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "nvim-dap": {
-      "rev": "4c0e3a9",
+      "rev": "5860c7c501eb428d3137ee22c522828d20cca0b3",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-ui": {
@@ -25,7 +33,7 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "2010fc6",
+      "rev": "d4f77e7a9a4b910622a0bc225e482c4c808e4099",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -45,7 +53,7 @@
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "snacks.nvim": {
-      "rev": "dec29f5",
+      "rev": "836e07336ba523d4da480cd66f0241815393e98e",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tokyonight.nvim": {
