@@ -1,14 +1,14 @@
 vim.pack.add({
 	"https://github.com/williamboman/mason.nvim",
-	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 })
 
 local mason = require("mason")
-local mason_tool_installer = require("mason-tool-installer")
-
 mason.setup()
-mason_tool_installer.setup({
-	ensure_installed = {
+
+-- based on https://www.reddit.com/r/neovim/comments/1p50srp/comment/nqgc8i8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+local mr = require("mason-registry")
+mr.refresh(function()
+	for _, tool in ipairs({
 		"lua-language-server",
 		"vtsls",
 		"eslint-lsp",
@@ -19,5 +19,11 @@ mason_tool_installer.setup({
 		"vue-language-server",
 		"copilot-language-server",
 		"terraform-ls",
-	},
-})
+	}) do
+		local p = mr.get_package(tool)
+		local is_globally_installed = vim.fn.executable(tool) == 1
+		if not is_globally_installed and not p:is_installed() then
+			p:install()
+		end
+	end
+end)
