@@ -5,6 +5,7 @@ require("config.completion")
 require("config.keymaps")
 
 require("plugins.colorscheme")
+require("plugins.explorer")
 require("plugins.syntax-parser")
 require("plugins.lsp-config")
 require("plugins.fuzzy-find")

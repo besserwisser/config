@@ -23,13 +23,6 @@ snacks.setup({
 			},
 		},
 		sources = {
-			explorer = {
-				layout = {
-					layout = { width = 0.3 },
-					preview = true,
-				},
-				auto_close = true,
-			},
 			recent = {
 				filter = {
 					cwd = true,
@@ -49,7 +42,6 @@ keymap("n", "<leader>,", function() snacks.picker.buffers() end, { desc = "Buffe
 keymap("n", "<leader>/", function() snacks.picker.grep() end, { desc = "Grep" })
 keymap("n", "<leader>:", function() snacks.picker.command_history() end, { desc = "Command History" })
 keymap("n", "<leader>n", function() snacks.picker.notifications() end, { desc = "Notification History" })
-keymap("n", "<leader>e", function() snacks.explorer() end, { desc = "File Explorer" })
 
 -- find
 keymap("n", "<leader>fb", function() snacks.picker.buffers() end, { desc = "Buffers" })
