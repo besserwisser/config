@@ -1,16 +1,10 @@
-vim.pack.add({ "https://github.com/folke/tokyonight.nvim" })
+vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
 
-local tokyonight = require("tokyonight")
-
-tokyonight.setup({
+require("kanagawa").setup({
 	transparent = true,
-	styles = {
-		sidebars = "transparent",
-		floats = "transparent",
-	},
 })
 
-vim.cmd([[colorscheme tokyonight-moon]])
+vim.cmd([[colorscheme kanagawa]])
 
 -- Unified transparent highlight groups
 local transparent_groups = {
