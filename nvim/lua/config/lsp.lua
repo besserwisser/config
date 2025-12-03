@@ -17,15 +17,18 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("eslint", {
+vim.lsp.config("tsgo", {
 	settings = {
-		rulesCustomizations = {
-			{ rule = "import/no-extraneous-dependencies", severity = "off" },
+		typescript = {
+			preferences = {
+				importModuleSpecifier = "project-relative",
+			},
 		},
 	},
 })
 
 vim.lsp.config("vtsls", {
+	filetypes = { "vue" },
 	settings = {
 		typescript = {
 			preferences = {
@@ -51,7 +54,14 @@ vim.lsp.config("vtsls", {
 			},
 		},
 	},
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+})
+
+vim.lsp.config("eslint", {
+	settings = {
+		rulesCustomizations = {
+			{ rule = "import/no-extraneous-dependencies", severity = "off" },
+		},
+	},
 })
 
 vim.lsp.config("copilot", {
@@ -62,4 +72,4 @@ vim.lsp.config("copilot", {
 	},
 })
 
-vim.lsp.enable({ "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
+vim.lsp.enable({ "tsgo", "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
