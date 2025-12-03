@@ -17,16 +17,6 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("tsgo", {
-	settings = {
-		typescript = {
-			preferences = {
-				importModuleSpecifier = "project-relative",
-			},
-		},
-	},
-})
-
 vim.lsp.config("vtsls", {
 	filetypes = { "vue" },
 	settings = {
