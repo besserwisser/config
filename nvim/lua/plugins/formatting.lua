@@ -7,6 +7,12 @@ require("conform").setup({
 		lsp_format = "first",
 		timeout_ms = 3000,
 	},
+	formatters = {
+		prettierd = {
+			-- Only format if a config file is present in the cwd
+			require_cwd = true,
+		},
+	},
 	formatters_by_ft = {
 		javascript = { "prettierd" },
 		javascriptreact = { "prettierd" },
