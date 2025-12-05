@@ -10,7 +10,6 @@ local mr = require("mason-registry")
 mr.refresh(function()
 	for _, tool in ipairs({
 		"lua-language-server",
-		"tsgo",
 		"vtsls",
 		"eslint-lsp",
 		"js-debug-adapter",

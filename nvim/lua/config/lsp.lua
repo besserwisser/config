@@ -18,7 +18,7 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.config("vtsls", {
-	filetypes = { "vue" },
+	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 	settings = {
 		typescript = {
 			preferences = {
@@ -62,4 +62,4 @@ vim.lsp.config("copilot", {
 	},
 })
 
-vim.lsp.enable({ "tsgo", "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
+vim.lsp.enable({ "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
