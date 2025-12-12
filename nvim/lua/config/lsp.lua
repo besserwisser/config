@@ -17,35 +17,6 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("vtsls", {
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-	settings = {
-		typescript = {
-			preferences = {
-				importModuleSpecifier = "project-relative",
-			},
-		},
-		vtsls = {
-			experimental = {
-				completion = {
-					enableServerSideFuzzyMatch = true,
-				},
-			},
-			tsserver = {
-				globalPlugins = {
-					{
-						name = "@vue/typescript-plugin",
-						location = vim.fn.stdpath("data")
-							.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-						languages = { "vue" },
-						configNamespace = "typescript",
-					},
-				},
-			},
-		},
-	},
-})
-
 vim.lsp.config("eslint", {
 	settings = {
 		rulesCustomizations = {
@@ -62,4 +33,23 @@ vim.lsp.config("copilot", {
 	},
 })
 
-vim.lsp.enable({ "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
+vim.lsp.config("vtsls", {
+	settings = {
+		vtsls = {
+			tsserver = {
+				globalPlugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = vim.fn.stdpath("data")
+							.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+						languages = { "vue" },
+						configNamespace = "typescript",
+					},
+				},
+			},
+		},
+	},
+	filetypes = { "vue" },
+})
+
+vim.lsp.enable({ "vtsls", "tsgo", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })

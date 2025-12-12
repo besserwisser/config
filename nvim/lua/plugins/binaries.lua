@@ -19,6 +19,7 @@ mr.refresh(function()
 		"vue-language-server",
 		"copilot-language-server",
 		"terraform-ls",
+		"tsgo",
 	}) do
 		local p = mr.get_package(tool)
 		local is_globally_installed = vim.fn.executable(tool) == 1

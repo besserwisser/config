@@ -22,12 +22,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 
-			-- only enable autocomplete in normal buffers
-			vim.bo.autocomplete = vim.bo.buftype == ""
-
 			-- enable documentation on completion item selection
 			local augroup = vim.api.nvim_create_augroup("CompletionDocumentation" .. client.id, { clear = true })
 			utils.enable_completion_documentation(client, augroup, args.buf)
 		end
 	end,
 })
+
+-- Auto trigger completion on all characters. Works better with tsgo instead of vim.bo.autocomplete
+vim.api.nvim_create_autocmd("InsertCharPre", {
+	group = vim.api.nvim_create_augroup("CompletionAutoTrigger", { clear = true }),
+	desc = "Auto trigger completion on all characters",
+	callback = function()
+		vim.schedule(function()
+			vim.lsp.completion.get()
+		end)
+	end,
+})
+
+-- Auto trigger completion on backspace as well
+vim.keymap.set("i", "<BS>", function()
+	vim.schedule(function()
+		vim.lsp.completion.get()
+	end)
+	return "<BS>"
+end, { expr = true })
