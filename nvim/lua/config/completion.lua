@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client:supports_method("textDocument/completion") then
-			-- Enable native LSP completion. Thanks to vim.bo.autocomplete, we don't need autotrigger, but I want to use the convert function for styling.
+			-- Enable native LSP completion.
 			vim.lsp.completion.enable(true, client.id, args.buf, {
 				convert = function(item)
 					return {
@@ -22,28 +22,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 
+			vim.bo.autocomplete = vim.bo.buftype == ""
+
 			-- enable documentation on completion item selection
 			local augroup = vim.api.nvim_create_augroup("CompletionDocumentation" .. client.id, { clear = true })
 			utils.enable_completion_documentation(client, augroup, args.buf)
 		end
 	end,
 })
-
--- Auto trigger completion on all characters. Works better with tsgo instead of vim.bo.autocomplete
-vim.api.nvim_create_autocmd("InsertCharPre", {
-	group = vim.api.nvim_create_augroup("CompletionAutoTrigger", { clear = true }),
-	desc = "Auto trigger completion on all characters",
-	callback = function()
-		vim.schedule(function()
-			vim.lsp.completion.get()
-		end)
-	end,
-})
-
--- Auto trigger completion on backspace as well
-vim.keymap.set("i", "<BS>", function()
-	vim.schedule(function()
-		vim.lsp.completion.get()
-	end)
-	return "<BS>"
-end, { expr = true })

@@ -37,19 +37,29 @@ vim.lsp.config("vtsls", {
 	settings = {
 		vtsls = {
 			tsserver = {
-				globalPlugins = {
-					{
-						name = "@vue/typescript-plugin",
-						location = vim.fn.stdpath("data")
-							.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-						languages = { "vue" },
-						configNamespace = "typescript",
-					},
-				},
+				-- Enable again, if this is released: https://github.com/vuejs/language-tools/pull/5869
+				-- globalPlugins = {
+				-- 	{
+				-- 		name = "@vue/typescript-plugin",
+				-- 		location = vim.fn.stdpath("data")
+				-- 			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+				-- 		languages = { "vue" },
+				-- 		configNamespace = "typescript",
+				-- 	},
+				-- },
 			},
 		},
 	},
-	filetypes = { "vue" },
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+		"vue",
+	},
 })
 
-vim.lsp.enable({ "vtsls", "tsgo", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
+-- For now I use vtsls over tsgo, because vtsls supports Vue files. Also tsgo did not work with file completion in import/export statements.
+vim.lsp.enable({ "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
