@@ -37,16 +37,16 @@ vim.lsp.config("vtsls", {
 	settings = {
 		vtsls = {
 			tsserver = {
-				-- fixed version to 3.17 atm update, if: https://github.com/vuejs/language-tools/pull/5869 is released
-				globalPlugins = {
-					{
-						name = "@vue/typescript-plugin",
-						location = vim.fn.stdpath("data")
-							.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-						languages = { "vue" },
-						configNamespace = "typescript",
-					},
-				},
+				-- activate again if: https://github.com/vuejs/language-tools/pull/5869 is released
+				-- globalPlugins = {
+				-- 	{
+				-- 		name = "@vue/typescript-plugin",
+				-- 		location = vim.fn.stdpath("data")
+				-- 			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+				-- 		languages = { "vue" },
+				-- 		configNamespace = "typescript",
+				-- 	},
+				-- },
 			},
 		},
 	},
