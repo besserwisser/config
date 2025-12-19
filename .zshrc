@@ -261,3 +261,4 @@ export EDITOR=nvim
 
 # use alias for kubectl 
 alias k="kubectl"
+alias docker="podman"
