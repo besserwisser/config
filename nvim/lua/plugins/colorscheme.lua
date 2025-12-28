@@ -2,6 +2,14 @@ vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
 
 require("kanagawa").setup({
 	transparent = true,
+	colors = {
+		palette = {
+			-- background of line number column
+			sumiInk4 = "#171717",
+			-- background of cursor line
+			sumiInk5 = "#252525",
+		},
+	},
 })
 
 vim.cmd([[colorscheme kanagawa]])
