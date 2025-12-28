@@ -37,16 +37,15 @@ vim.lsp.config("vtsls", {
 	settings = {
 		vtsls = {
 			tsserver = {
-				-- activate again if: https://github.com/vuejs/language-tools/pull/5869 is released
-				-- globalPlugins = {
-				-- 	{
-				-- 		name = "@vue/typescript-plugin",
-				-- 		location = vim.fn.stdpath("data")
-				-- 			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-				-- 		languages = { "vue" },
-				-- 		configNamespace = "typescript",
-				-- 	},
-				-- },
+				globalPlugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = vim.fn.stdpath("data")
+							.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+						languages = { "vue" },
+						configNamespace = "typescript",
+					},
+				},
 			},
 		},
 	},
@@ -63,3 +62,20 @@ vim.lsp.config("vtsls", {
 
 -- For now I use vtsls over tsgo, because vtsls supports Vue files. Also tsgo did not work with file completion in import/export statements.
 vim.lsp.enable({ "vtsls", "lua_ls", "eslint", "vue_ls", "copilot", "terraformls" })
+
+-- Notify when an LSP client attaches
+-- Track which clients have notified "ready" to avoid duplicates
+local notified_clients = {}
+vim.api.nvim_create_autocmd("LspProgress", {
+	callback = function(args)
+		local client_id = args.data.client_id
+		local value = args.data.params.value
+		if value.kind == "end" and not notified_clients[client_id] then
+			notified_clients[client_id] = true
+			local client = vim.lsp.get_client_by_id(client_id)
+			if client then
+				vim.notify(client.name .. " ready", vim.log.levels.INFO)
+			end
+		end
+	end,
+})
