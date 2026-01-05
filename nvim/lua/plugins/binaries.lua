@@ -7,7 +7,7 @@ mason.setup()
 
 -- based on https://www.reddit.com/r/neovim/comments/1p50srp/comment/nqgc8i8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 local mr = require("mason-registry")
-mr.refresh(function(success, err)
+local ok_refresh, _ = pcall(mr.refresh, function(success, err)
 	if not success then
 		vim.notify("Mason registry refresh failed: " .. tostring(err), vim.log.levels.WARN)
 		return
