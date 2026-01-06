@@ -147,8 +147,8 @@ when() {
 
   # --- New: Define your total required work duration ---
   # For example, 7 hours and 30 minutes
-  totalWorkHours=7
-  totalWorkMinutes=30
+  totalWorkHours=8
+  totalWorkMinutes=00
   # --- End New ---
 
   # Get current time as end timestamp for "so far" calculations
