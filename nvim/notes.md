@@ -155,6 +155,7 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 - `<C-w>x` - **Swap** the current window with the next one.
 - `<C-w>=` - **Equalize** the size of all open windows.
 - `<C-w>>` / `<C-w><` - **Increase** or **decrease** the width of the current window.
+- `<C-w>+` / `<C-w>-` - **Increase** or **decrease** the height of the current window.
 - `:windo {cmd}` - Execute a command in **all windows**. For example, `:windo diffthis` to show diff between files.
 - `:windo diffthis` - **Show differences** between all open buffers in diff mode. Use `:windo diffoff` to exit diff mode.
 
