@@ -177,3 +177,8 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 ## Terminal Mode
 
 - `<C-\><C-n>` - Exit terminal mode and return to normal mode.
+
+## Snacks
+
+- `<leader>sC` - Search all available commands 
+- `<leader>sh` - Search help
