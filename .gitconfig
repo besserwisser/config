@@ -38,3 +38,6 @@
 [difftool "nvim_difftool"]
  	cmd = nvim -c \"DiffTool $LOCAL $REMOTE\"
 	 # use it for prs as well: git difftool -d main
+	 
+[init]
+	defaultBranch = main
