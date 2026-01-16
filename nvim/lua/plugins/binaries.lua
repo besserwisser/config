@@ -13,7 +13,7 @@ local ok_refresh, _ = pcall(mr.refresh, function(success, err)
 		return
 	end
 	for _, tool in ipairs({
-		"lua-language-server",
+		"emmylua_ls",
 		"vtsls",
 		"eslint-lsp",
 		"js-debug-adapter",
