@@ -11,9 +11,9 @@ This directory contains configuration files and scripts for customizing your dev
 
 ---
 
-## Terminal Emulator: Kitty
+## Terminal Emulator: iTerm
 
-- Set cursorline color of tokyonight semi transparent
+- Set cursorline color semi transparent
 - Set darkened background image
 - Make terminal as minimal as possible (running in fullscreen all the time)
 
