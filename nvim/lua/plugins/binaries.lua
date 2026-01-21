@@ -23,6 +23,7 @@ local ok_refresh, _ = pcall(mr.refresh, function(success, err)
 		"vue-language-server",
 		"copilot-language-server",
 		"terraform-ls",
+		"css-lsp",
 	}) do
 		local ok, p = pcall(mr.get_package, tool)
 		if ok then
