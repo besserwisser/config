@@ -24,6 +24,7 @@ local ok_refresh, _ = pcall(mr.refresh, function(success, err)
 		"copilot-language-server",
 		"terraform-ls",
 		"css-lsp",
+		"html-lsp",
 	}) do
 		local ok, p = pcall(mr.get_package, tool)
 		if ok then
