@@ -6,6 +6,7 @@ vim.pack.add({
 local snacks = require("snacks")
 
 snacks.setup({
+	toggle = {},
 	picker = {
 		ui_select = true,
 		win = {
