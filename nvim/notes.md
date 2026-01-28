@@ -148,6 +148,13 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 - `@a` - **Execute the macro** stored in register 'a'.
 - `5@a` - **Execute macro 'a' five times**.
 
+## Build
+
+- `:make` - Run the build command defined in your `makeprg` option.
+- `:copen` - Open the quickfix window to view build errors.
+- `:cnext` / `:cprev` - Jump to the next or previous error in the quickfix list.
+- `:clist` - Show the quickfix list without opening a window.
+
 ## Window Operations
 
 - `<C-w>H` - **Move the current split** to the far left, making it a vertical split. Works with `H` (left), `J` (bottom), `K` (top), and `L` (right).
