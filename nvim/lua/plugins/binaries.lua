@@ -26,6 +26,7 @@ local ok_refresh, _ = pcall(mr.refresh, function(success, err)
 		"css-lsp",
 		"html-lsp",
 		"tailwindcss-language-server",
+		"emmet-language-server",
 	}) do
 		local ok, p = pcall(mr.get_package, tool)
 		if ok then

@@ -69,7 +69,18 @@ vim.lsp.config("vtsls", {
 })
 
 -- For now I use vtsls over tsgo, because vtsls supports Vue files. Also tsgo did not work with file completion in import/export statements.
-vim.lsp.enable({ "vtsls", "emmylua_ls", "eslint", "vue_ls", "copilot", "terraformls", "cssls", "html", "tailwindcss" })
+vim.lsp.enable({
+	"vtsls",
+	"emmylua_ls",
+	"eslint",
+	"vue_ls",
+	"copilot",
+	"terraformls",
+	"cssls",
+	"html",
+	"tailwindcss",
+	"emmet_language_server",
+})
 
 -- Notify when an LSP client attaches
 -- Track which clients have notified "ready" to avoid duplicates
