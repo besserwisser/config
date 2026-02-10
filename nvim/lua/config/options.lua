@@ -84,7 +84,7 @@ vim.o.statusline = "%{v:lua.recording_status()} %= %F %m%{v:lua.search_count()}"
 vim.o.cursorline = true
 
 -- ui improvements https://www.reddit.com/r/neovim/comments/1kcz8un/great_improvements_to_the_cmdline_in_nightly/
-require("vim._extui").enable({
+require("vim._core.ui2").enable({
 	msg = {
 		target = "msg",
 		timeout = 6000,
