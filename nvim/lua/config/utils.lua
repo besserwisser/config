@@ -129,6 +129,11 @@ M.enable_completion_documentation = function(client, augroup, bufnr)
 								return
 							end
 
+							-- check if result is nil or empty
+							if not result or vim.tbl_isempty(result) then
+								vim.notify("no completion item details", vim.log.levels.WARN)
+								return
+							end
 							local description = vim.tbl_get(result, "labelDetails", "description") or ""
 							local docs = vim.tbl_get(result, "documentation", "value") or ""
 
