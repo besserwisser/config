@@ -1,6 +1,6 @@
 local utils = require("config.utils")
 
-vim.opt.completeopt = { "menuone", "noselect", "popup" }
+vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy" }
 vim.o.complete = "o"
 vim.o.pumheight = 15
 

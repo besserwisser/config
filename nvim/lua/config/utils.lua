@@ -87,15 +87,21 @@ end
 -- based on https://github.com/konradmalik/neovim-flake/blob/6dba374af89a294c976d72615cca6cfca583a9f2/config/native/lua/pde/lsp/completion.lua
 local docs_debounce_ms = 100
 local timer = vim.uv.new_timer()
+local registered_bufs = {}
 
----@param client vim.lsp.Client
----@param augroup integer
 ---@param bufnr integer
-M.enable_completion_documentation = function(client, augroup, bufnr)
+M.enable_completion_documentation = function(_, _, bufnr)
 	if not timer then
 		vim.notify("cannot create timer", vim.log.levels.ERROR)
 		return
 	end
+
+	if registered_bufs[bufnr] then
+		return
+	end
+	registered_bufs[bufnr] = true
+
+	local augroup = vim.api.nvim_create_augroup("CompletionDocumentation" .. bufnr, { clear = true })
 
 	vim.api.nvim_create_autocmd("CompleteChanged", {
 		group = augroup,
@@ -103,16 +109,29 @@ M.enable_completion_documentation = function(client, augroup, bufnr)
 		callback = function()
 			timer:stop()
 
-			local completion_item = vim.tbl_get(vim.v.completed_item, "user_data", "nvim", "lsp", "completion_item")
+			local user_data = vim.tbl_get(vim.v.completed_item, "user_data")
+			if type(user_data) == "string" and user_data ~= "" then
+				user_data = vim.json.decode(user_data)
+			end
+			local completion_item = vim.tbl_get(user_data or {}, "nvim", "lsp", "completion_item")
+			local client_id = vim.tbl_get(user_data or {}, "nvim", "lsp", "client_id")
 
-			if not completion_item then
-				vim.notify("no completion item", vim.log.levels.WARN)
+			if not completion_item or not client_id then
+				return
+			end
+
+			local client = vim.lsp.get_client_by_id(client_id)
+			if not client then
+				return
+			end
+
+			local resolve_provider = vim.tbl_get(client, "server_capabilities", "completionProvider", "resolveProvider")
+			if not resolve_provider then
 				return
 			end
 
 			local complete_info = vim.fn.complete_info({ "selected" })
 			if vim.tbl_isempty(complete_info) then
-				vim.notify("no complete info", vim.log.levels.WARN)
 				return
 			end
 
@@ -125,36 +144,39 @@ M.enable_completion_documentation = function(client, augroup, bufnr)
 						completion_item,
 						function(err, result)
 							if err ~= nil then
-								vim.notify("client " .. client.id .. vim.inspect(err), vim.log.levels.ERROR)
 								return
 							end
 
-							-- check if result is nil or empty
-							if not result or vim.tbl_isempty(result) then
-								vim.notify("no completion item details", vim.log.levels.WARN)
+							if not result then
 								return
 							end
+
 							local description = vim.tbl_get(result, "labelDetails", "description") or ""
+							local detail = result.detail or ""
 							local docs = vim.tbl_get(result, "documentation", "value") or ""
 
-							-- combine label description and documentation. The description shows where the item will be imported from, at least in tsserver
+							-- combine label description, detail (type signature), and documentation
+							-- description shows where the item will be imported from, at least in tsserver
+							-- detail shows the type/function signature
+							local parts = {}
 							if description ~= "" then
-								local formattedDescription = "*" .. description .. "*"
-								if docs ~= "" then
-									docs = formattedDescription .. "\n\n" .. docs
-								else
-									docs = formattedDescription
-								end
+								table.insert(parts, "*" .. description .. "*")
+							end
+							if detail ~= "" then
+								table.insert(parts, "```typescript\n" .. detail .. "\n```")
+							end
+							if docs ~= "" then
+								table.insert(parts, docs)
 							end
 
-							if docs == "" then
+							if #parts == 0 then
 								return
 							end
 
+							docs = table.concat(parts, "\n\n")
+
 							local wininfo = vim.api.nvim__complete_set(complete_info.selected, { info = docs })
-							-- sometimes wininfo is empty, e.g. when the completion menu is closed before the docs arrivej	jj
 							if vim.tbl_isempty(wininfo) or not vim.api.nvim_win_is_valid(wininfo.winid) then
-								vim.notify("no valid wininfo", vim.log.levels.WARN)
 								return
 							end
 
