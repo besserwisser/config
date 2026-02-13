@@ -35,6 +35,7 @@ require("conform").setup({
 		typescriptreact = { "prettierd" },
 		lua = { "stylua" },
 		json = { "prettierd" },
+		yaml = { "prettierd" },
 		markdown = { "prettierd" },
 	},
 })
