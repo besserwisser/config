@@ -11,6 +11,21 @@ require("conform").setup({
 		prettierd = {
 			-- Only format if a config file is present in the cwd
 			require_cwd = true,
+			cwd = require("conform.util").root_file({
+				".prettierrc",
+				".prettierrc.json",
+				".prettierrc.yml",
+				".prettierrc.yaml",
+				".prettierrc.json5",
+				".prettierrc.js",
+				".prettierrc.cjs",
+				".prettierrc.mjs",
+				".prettierrc.toml",
+				"prettier.config.js",
+				"prettier.config.cjs",
+				"prettier.config.mjs",
+				"prettier.config.ts",
+			}),
 		},
 	},
 	formatters_by_ft = {
@@ -19,6 +34,7 @@ require("conform").setup({
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
 		lua = { "stylua" },
+		json = { "prettierd" },
 		markdown = { "prettierd" },
 	},
 })
