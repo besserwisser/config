@@ -1,15 +1,18 @@
 require("config.options")
 require("config.autocmds")
-require("config.lsp")
-require("config.completion")
 require("config.keymaps")
 
 require("plugins.colorscheme")
 require("plugins.explorer")
 require("plugins.syntax-parser")
 require("plugins.lsp-config")
-require("plugins.fuzzy-find")
 require("plugins.binaries")
+
+-- It seems like this now needs to be after lsp-config and binaries
+require("config.lsp")
+require("config.completion")
+
+require("plugins.fuzzy-find")
 require("plugins.formatting")
 require("plugins.debugging")
 require("plugins.ai")
