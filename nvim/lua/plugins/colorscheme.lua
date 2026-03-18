@@ -27,3 +27,10 @@ local transparent_groups = {
 for _, group in ipairs(transparent_groups) do
 	vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
 end
+
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", fg = "NONE" })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#3a3a4a", fg = "NONE" })
+vim.api.nvim_set_hl(0, "PmenuKind", { bg = "NONE", fg = "#9ca3af" })
+vim.api.nvim_set_hl(0, "PmenuKindSel", { bg = "#3a3a4a", fg = "#9ca3af" })
+vim.api.nvim_set_hl(0, "PmenuExtra", { bg = "NONE", fg = "#6b7280" })
+vim.api.nvim_set_hl(0, "PmenuExtraSel", { bg = "#3a3a4a", fg = "#6b7280" })
