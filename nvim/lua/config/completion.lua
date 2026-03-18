@@ -18,6 +18,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 						abbr = item.label:gsub("%b()", ""),
 						-- Enable colors for kinds, e.g. Function, Variable, etc.
 						kind_hlgroup = "LspKind" .. (vim.lsp.protocol.CompletionItemKind[item.kind] or ""),
+						-- Show the source module/package (e.g. "react", "lodash") for auto-imports
+						menu = item.labelDetails and item.labelDetails.description or "",
 					}
 				end,
 			})
