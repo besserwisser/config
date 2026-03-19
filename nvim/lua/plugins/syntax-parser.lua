@@ -1,9 +1,11 @@
 vim.pack.add({
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/windwp/nvim-ts-autotag",
+	"https://github.com/echasnovski/mini.pairs",
 })
 
 require("nvim-ts-autotag").setup({})
+require("mini.pairs").setup()
 
 local nvim_treesitter_configs = require("nvim-treesitter.configs")
 
