@@ -1,4 +1,12 @@
+vim.pack.add({
+	"https://github.com/windwp/nvim-ts-autotag",
+	"https://github.com/windwp/nvim-autopairs",
+})
+
 local utils = require("config.utils")
+
+require("nvim-ts-autotag").setup({})
+require("nvim-autopairs").setup({ check_ts = true })
 
 vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy" }
 vim.o.complete = "o"
