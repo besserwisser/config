@@ -96,3 +96,12 @@ vim.api.nvim_create_autocmd("LspProgress", {
 		end
 	end,
 })
+
+vim.api.nvim_create_user_command("LspConfigOpen", function(opts)
+	local path = vim.api.nvim_get_runtime_file("lsp/" .. opts.args .. ".lua", false)[1]
+	if path then
+		vim.cmd.edit(path)
+	else
+		vim.notify("Not found: " .. opts.args)
+	end
+end, { nargs = 1 })
