@@ -1,31 +1,33 @@
 vim.pack.add({
-	"https://github.com/nvim-treesitter/nvim-treesitter",
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 })
 
-local nvim_treesitter_configs = require("nvim-treesitter.configs")
-
-nvim_treesitter_configs.setup({
-	ensure_installed = {
-		"lua",
-		"javascript",
-		"typescript",
-		"tsx",
-		"json",
-		"css",
-		"html",
-		"http",
-		"diff",
-		"vue",
-		"regex",
-		"terraform",
-	},
-	auto_install = false,
-	highlight = { enable = true },
-	indent = { enable = true },
-	modules = {},
-	sync_install = false,
-	ignore_install = {},
-})
+local function setup_treesitter()
+	require("nvim-treesitter.configs").setup({
+		ensure_installed = {
+			"lua",
+			"javascript",
+			"typescript",
+			"tsx",
+			"json",
+			"css",
+			"html",
+			"http",
+			"diff",
+			"vue",
+			"regex",
+			"terraform",
+			"bash",
+		},
+		install_dir = vim.fn.stdpath("data") .. "/site",
+		auto_install = false,
+		highlight = { enable = true },
+		indent = { enable = true },
+		modules = {},
+		sync_install = false,
+		ignore_install = {},
+	})
+end
 
 -- run :TSUpdate when plugin is updated
 vim.api.nvim_create_autocmd({ "PackChanged" }, {
