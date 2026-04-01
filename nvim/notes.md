@@ -48,6 +48,7 @@ A personal collection of useful commands and concepts.
 - `cgn` - **Change** the **next search match**. Can be repeated with `.`.
 - `d/pattern<CR>`, `c/pattern<CR>`, `y/pattern<CR>` - **Delete**, **change**, or **yank** from the cursor to the next occurrence of "pattern".
 - `as` / `is` - Select **around** or **inside** a sentence.
+- `an` / `in` - Select **around** or **inside** a node in languages like XML or HTML.
 
 ## Numbers
 
