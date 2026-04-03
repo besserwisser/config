@@ -7,12 +7,7 @@
 local util = require("lspconfig.util")
 
 local function find_tailwind_global_css()
-	-- Target patterns with both single and double quotes
-	local targets = {
-		"@import 'tailwindcss';",
-		'@import "tailwindcss";',
-	}
-
+	local target = [[%@import ['"]tailwindcss['"]%;]]
 	-- Find project root using `.git`
 	local buf = vim.api.nvim_get_current_buf()
 	local root = vim.fs.root(buf, function(name)
@@ -35,10 +30,8 @@ local function find_tailwind_global_css()
 	for _, path in ipairs(files) do
 		local content = vim.fn.readblob(path)
 
-		for _, target in ipairs(targets) do
-			if content:find(target, 1, true) then
-				return path -- return first match
-			end
+		if content:find(target, 1, true) then
+			return path -- return first match
 		end
 	end
 
