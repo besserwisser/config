@@ -140,6 +140,7 @@ return {
 				htmlangular = "html",
 				templ = "html",
 			},
+			classFunctions = { "cva", "cx", "cn" },
 		},
 	},
 	before_init = function(_, config)
