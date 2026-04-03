@@ -41,6 +41,10 @@ vim.lsp.config("copilot", {
 	},
 })
 
+-- Temp fix until this is merged: Update tailwindcss.lua to support multiple import patterns #4371
+-- Remove the lsp/tailwindcss.lua file and this custom config once the PR is merged and released.
+vim.lsp.config("tailwindcss", dofile(vim.fn.stdpath("config") .. "/lsp/tailwindcss.lua"))
+
 vim.lsp.config("vtsls", {
 	settings = {
 		vtsls = {
