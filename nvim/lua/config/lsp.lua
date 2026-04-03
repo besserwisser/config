@@ -44,6 +44,8 @@ vim.lsp.config("copilot", {
 -- Temp fix until this is merged: Update tailwindcss.lua to support multiple import patterns #4371
 -- Remove the lsp/tailwindcss.lua file and this custom config once the PR is merged and released.
 -- also don't forget to add the classFunctions  			classFunctions = { "cva", "cx", "cn" },
+-- Use git ls-files to respect .gitignore and avoid scanning node_modules or
+-- other large untracked directories. See https://github.com/neovim/nvim-lspconfig/issues/4373
 vim.lsp.config("tailwindcss", dofile(vim.fn.stdpath("config") .. "/lsp/tailwindcss.lua"))
 -- vscode style color preview with square icon as virtual text instead of full color background
 vim.lsp.document_color.enable(true, nil, { style = "virtual" })
