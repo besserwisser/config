@@ -6,7 +6,17 @@ vim.pack.add({
 local utils = require("config.utils")
 
 require("nvim-ts-autotag").setup({})
-require("nvim-autopairs").setup({ check_ts = true })
+require("nvim-autopairs").setup({ check_ts = true, map_cr = false })
+
+-- The default autopairs completion_confirm() bypasses autopairs_cr() whenever
+-- pumvisible() != 0, even if nothing is selected ("noselect" completeopt).
+-- Override to only skip autopairs when an item is actually selected.
+vim.keymap.set("i", "<CR>", function()
+	if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "selected" }).selected ~= -1 then
+		return vim.api.nvim_replace_termcodes("<C-y>", true, false, true)
+	end
+	return require("nvim-autopairs").autopairs_cr()
+end, { expr = true, replace_keycodes = false })
 
 vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy" }
 vim.o.complete = "o"
