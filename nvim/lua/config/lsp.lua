@@ -87,20 +87,18 @@ vim.lsp.enable({
 	"emmet_language_server",
 })
 
--- Notify when an LSP client attaches
--- Track which clients have notified "ready" to avoid duplicates
-local notified_clients = {}
 vim.api.nvim_create_autocmd("LspProgress", {
-	callback = function(args)
-		local client_id = args.data.client_id
-		local value = args.data.params.value
-		if value.kind == "end" and not notified_clients[client_id] then
-			notified_clients[client_id] = true
-			local client = vim.lsp.get_client_by_id(client_id)
-			if client then
-				vim.notify(client.name .. " ready", vim.log.levels.INFO)
-			end
-		end
+	buffer = buf,
+	callback = function(ev)
+		local value = ev.data.params.value
+		vim.api.nvim_echo({ { value.message or "done" } }, false, {
+			id = "lsp." .. ev.data.client_id,
+			kind = "progress",
+			source = "vim.lsp",
+			title = value.title,
+			status = value.kind ~= "end" and "running" or "success",
+			percent = value.percentage,
+		})
 	end,
 })
 

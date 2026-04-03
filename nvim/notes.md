@@ -24,6 +24,7 @@ A personal collection of useful commands and concepts.
 - `'m` and `m - Jump to beginning of mark line or exact position of mark.
 - `g;` and `g,` - Jump to the next or previous change in the file.
 - `gx` - Open the URL under the cursor in your default web browser.
+- `gf` - Open the file under the cursor. Works with file paths and URLs. E.g. with the lsp log path from `:checkhealth vim.lsp`
 - `[{` - Jump to the **previous unmatched `{` brace**. Can be combined with `v%` (e.g., `[{v%`) to select the entire block.
 - `'.` - Jump to the **exact position** of the last change.
 - `f(w` - Jump to function arguments (inside parentheses).
@@ -182,6 +183,7 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 - `:Cfilter! /pattern/` - Filter the quickfix list to exclude entries matching "pattern".
 - `:lopen` / `:copen` - Open the location list or quickfix list window.
 - `]l` / `[l` - Jump to the next or previous entry in the location list.
+- `g<` - Check full message list of command output (e.g. from ui2)
 
 ## Terminal Mode
 
