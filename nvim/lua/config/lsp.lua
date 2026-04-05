@@ -36,7 +36,7 @@ vim.lsp.config("eslint", {
 vim.lsp.config("tailwindcss", {
 	settings = {
 		tailwindCSS = {
-			classFunctions = { "cva", "cx", "cn" },
+			classFunctions = { "cva", "cx", "cn", "tw" },
 		},
 	},
 })
