@@ -184,6 +184,7 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 - `:lopen` / `:copen` - Open the location list or quickfix list window.
 - `]l` / `[l` - Jump to the next or previous entry in the location list.
 - `g<` - Check full message list of command output (e.g. from ui2)
+- `vim.diagnostic.setqflist()` - Populate the quickfix list with diagnostics from the current buffer.
 
 ## Terminal Mode
 
