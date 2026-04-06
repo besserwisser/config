@@ -3,10 +3,7 @@ vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
 require("kanagawa").setup({
 	transparent = true,
 	colors = {
-		palette = {
-			-- background of cursor line
-			sumiInk5 = "#252525",
-		},
+		palette = {},
 		theme = {
 			all = {
 				ui = {
@@ -26,6 +23,9 @@ require("kanagawa").setup({
 			NormalFloat = { bg = "none" },
 			FloatBorder = { bg = "none" },
 			FloatTitle = { bg = "none" },
+
+			-- Cursor line to use more fitting color for dark background
+			CursorLine = { bg = colors.palette.sumiInk3 },
 
 			-- Save an hlgroup with dark background and dimmed foreground
 			-- so that you can use it where your still want darker windows.
