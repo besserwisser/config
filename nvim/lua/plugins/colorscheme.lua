@@ -9,28 +9,53 @@ require("kanagawa").setup({
 			-- background of cursor line
 			sumiInk5 = "#252525",
 		},
+		theme = {
+			all = {
+				ui = {
+					bg_gutter = "none",
+				},
+			},
+		},
 	},
+	overrides = function(colors)
+		local theme = colors.theme
+		local makeDiagnosticColor = function(color)
+			local c = require("kanagawa.lib.color")
+			return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
+		end
+
+		return {
+			NormalFloat = { bg = "none" },
+			FloatBorder = { bg = "none" },
+			FloatTitle = { bg = "none" },
+
+			-- Save an hlgroup with dark background and dimmed foreground
+			-- so that you can use it where your still want darker windows.
+			-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+			NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+
+			-- Popular plugins that open floats will link to NormalFloat by default;
+			-- set their background accordingly if you wish to keep them dark and borderless
+			LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+			MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+			-- Dark completion (popup) menu
+			Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+			PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+			PmenuSbar = { bg = theme.ui.bg_m1 },
+			PmenuThumb = { bg = theme.ui.bg_p2 },
+
+			-- Blend colors against the "active" background
+			DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),
+			DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
+			DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
+			DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
+
+			-- Transparent status line background
+			StatusLine = { bg = "none" },
+			StatusLineNC = { bg = "none" },
+		}
+	end,
 })
 
-vim.cmd([[colorscheme kanagawa]])
-
--- Unified transparent highlight groups
-local transparent_groups = {
-	"StatusLine", -- Active status line
-	"StatusLineNC", -- Inactive status line
-	"Pmenu", -- Popup menu
-	"PmenuSbar", -- Popup menu scrollbar
-	"NormalFloat", -- Floating windows
-	"FloatBorder", -- Floating window borders
-}
-
-for _, group in ipairs(transparent_groups) do
-	vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
-end
-
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE", fg = "NONE" })
-vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#3a3a4a", fg = "NONE" })
-vim.api.nvim_set_hl(0, "PmenuKind", { bg = "NONE", fg = "#9ca3af" })
-vim.api.nvim_set_hl(0, "PmenuKindSel", { bg = "#3a3a4a", fg = "#9ca3af" })
-vim.api.nvim_set_hl(0, "PmenuExtra", { bg = "NONE", fg = "#6b7280" })
-vim.api.nvim_set_hl(0, "PmenuExtraSel", { bg = "#3a3a4a", fg = "#6b7280" })
+require("kanagawa").load("wave")
