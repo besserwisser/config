@@ -4,8 +4,6 @@ require("kanagawa").setup({
 	transparent = true,
 	colors = {
 		palette = {
-			-- background of line number column
-			sumiInk4 = "#171717",
 			-- background of cursor line
 			sumiInk5 = "#252525",
 		},
@@ -39,10 +37,14 @@ require("kanagawa").setup({
 			LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 			MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
-			-- Dark completion (popup) menu
-			Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+			-- Transparent completion (popup) menu
+			Pmenu = { fg = theme.ui.shade0, bg = "none" },
 			PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-			PmenuSbar = { bg = theme.ui.bg_m1 },
+			PmenuKind = { fg = theme.ui.special, bg = "none" },
+			PmenuKindSel = { fg = theme.ui.special, bg = theme.ui.bg_p2 },
+			PmenuExtra = { fg = theme.ui.fg_dim, bg = "none" },
+			PmenuExtraSel = { fg = theme.ui.fg_dim, bg = theme.ui.bg_p2 },
+			PmenuSbar = { bg = "none" },
 			PmenuThumb = { bg = theme.ui.bg_p2 },
 
 			-- Blend colors against the "active" background
@@ -54,6 +56,10 @@ require("kanagawa").setup({
 			-- Transparent status line background
 			StatusLine = { bg = "none" },
 			StatusLineNC = { bg = "none" },
+
+			-- Match snacks picker cursor line to regular CursorLine
+			SnacksPickerCursorLine = { link = "CursorLine" },
+			SnacksPickerListCursorLine = { link = "CursorLine" },
 		}
 	end,
 })
