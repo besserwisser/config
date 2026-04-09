@@ -1,6 +1,10 @@
 {
-  "Thin Strokes" : 4,
-  "Custom Directory" : "No",
+  "Ansi 5 Color" : {
+    "Green Component" : 0,
+    "Blue Component" : 0.73333334922790527,
+    "Red Component" : 0.73333334922790527
+  },
+  "Set Local Environment Vars" : 2,
   "Working Directory" : "",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -70,9 +74,9 @@
   "Custom Command" : "No",
   "AWDS Tab Option" : "No",
   "Keyboard Map" : {
-    "0x7f-0x80000" : {
+    "0xf728-0x0" : {
       "Action" : 11,
-      "Text" : "0x1b 0x7f"
+      "Text" : "0x4"
     },
     "0xf702-0x280000" : {
       "Action" : 10,
@@ -81,6 +85,10 @@
     "0xf702-0x300000" : {
       "Action" : 11,
       "Text" : "0x1"
+    },
+    "0xf703-0x280000" : {
+      "Action" : 10,
+      "Text" : "f"
     },
     "0xf728-0x80000" : {
       "Action" : 10,
@@ -94,13 +102,9 @@
       "Action" : 11,
       "Text" : "0x5"
     },
-    "0xf728-0x0" : {
+    "0x7f-0x80000" : {
       "Action" : 11,
-      "Text" : "0x4"
-    },
-    "0xf703-0x280000" : {
-      "Action" : 10,
-      "Text" : "f"
+      "Text" : "0x1b 0x7f"
     }
   },
   "Ansi 14 Color" : {
@@ -163,8 +167,8 @@
     "Red Component" : 0.3333333432674408
   },
   "Semantic History" : {
-    "action" : "editor",
     "text" : "",
+    "action" : "editor",
     "editor" : "com.microsoft.VSCode"
   },
   "Ambiguous Double Width" : false,
@@ -179,8 +183,8 @@
   },
   "AWDS Pane Directory" : "",
   "Blur" : false,
-  "Normal Font" : "HackNFM-Regular 12",
   "Vertical Spacing" : 1,
+  "Normal Font" : "HackNFM-Regular 12",
   "Ansi 7 Color" : {
     "Green Component" : 0.73333334922790527,
     "Blue Component" : 0.73333334922790527,
@@ -223,10 +227,6 @@
   "Columns" : 80,
   "Visual Bell" : true,
   "ASCII Ligatures" : false,
-  "Ansi 5 Color" : {
-    "Green Component" : 0,
-    "Blue Component" : 0.73333334922790527,
-    "Red Component" : 0.73333334922790527
-  },
-  "Set Local Environment Vars" : 2
+  "Thin Strokes" : 4,
+  "Custom Directory" : "Advanced"
 }
