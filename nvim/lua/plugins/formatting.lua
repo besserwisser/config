@@ -4,7 +4,7 @@ vim.pack.add({
 
 require("conform").setup({
 	format_on_save = {
-		lsp_format = "first",
+		lsp_format = "fallback",
 		timeout_ms = 3000,
 	},
 	formatters = {
