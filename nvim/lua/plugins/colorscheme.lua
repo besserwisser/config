@@ -32,11 +32,6 @@ require("kanagawa").setup({
 			-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
 			NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
-			-- Popular plugins that open floats will link to NormalFloat by default;
-			-- set their background accordingly if you wish to keep them dark and borderless
-			LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-			MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-
 			-- Transparent completion (popup) menu
 			Pmenu = { fg = theme.ui.shade0, bg = "none" },
 			PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
