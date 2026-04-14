@@ -47,15 +47,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- Add a rounded border to all LSP floating windows (hover, signature help)
-local orig_open_floating_preview = vim.lsp.util.open_floating_preview
----@diagnostic disable-next-line: duplicate-set-field
-vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
-	opts = opts or {}
-	opts.border = opts.border or "rounded"
-	return orig_open_floating_preview(contents, syntax, opts, ...)
-end
-
 local function set_popup_border(winid)
 	if winid and winid >= 0 and vim.api.nvim_win_is_valid(winid) then
 		pcall(vim.api.nvim_win_set_config, winid, { border = "rounded" })
