@@ -10,7 +10,7 @@ require("conform").setup({
 	formatters = {
 		prettierd = {
 			-- Only format if a config file is present in the cwd
-			require_cwd = true,
+			-- require_cwd = true,
 			cwd = require("conform.util").root_file({
 				".prettierrc",
 				".prettierrc.json",
