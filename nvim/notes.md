@@ -50,6 +50,7 @@ A personal collection of useful commands and concepts.
 - `d/pattern<CR>`, `c/pattern<CR>`, `y/pattern<CR>` - **Delete**, **change**, or **yank** from the cursor to the next occurrence of "pattern".
 - `as` / `is` - Select **around** or **inside** a sentence.
 - `an` / `in` - Select **around** or **inside** a node in languages like XML or HTML.
+- `gq` - **Format** text. Use with a motion (e.g., `gqap` to format a paragraph, `gggqG` to format the whole buffer) or in visual mode to format the selected text.
 
 ## Numbers
 
@@ -192,5 +193,5 @@ The `:global` command (`:g`) executes a command on all lines matching a pattern.
 
 ## Snacks
 
-- `<leader>sC` - Search all available commands 
+- `<leader>sC` - Search all available commands
 - `<leader>sh` - Search help
