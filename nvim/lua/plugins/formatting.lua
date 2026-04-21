@@ -7,27 +7,6 @@ require("conform").setup({
 		lsp_format = "fallback",
 		timeout_ms = 3000,
 	},
-	formatters = {
-		prettierd = {
-			-- Only format if a config file is present in the cwd
-			-- require_cwd = true,
-			cwd = require("conform.util").root_file({
-				".prettierrc",
-				".prettierrc.json",
-				".prettierrc.yml",
-				".prettierrc.yaml",
-				".prettierrc.json5",
-				".prettierrc.js",
-				".prettierrc.cjs",
-				".prettierrc.mjs",
-				".prettierrc.toml",
-				"prettier.config.js",
-				"prettier.config.cjs",
-				"prettier.config.mjs",
-				"prettier.config.ts",
-			}),
-		},
-	},
 	formatters_by_ft = {
 		javascript = { "prettierd" },
 		javascriptreact = { "prettierd" },
