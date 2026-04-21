@@ -17,6 +17,7 @@ local ok_refresh, _ = pcall(mr.refresh, function(success, err)
 		"vtsls",
 		"eslint-lsp",
 		"js-debug-adapter",
+		"marksman",
 		"prettierd",
 		"stylua",
 		"tree-sitter-cli",

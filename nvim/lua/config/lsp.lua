@@ -79,6 +79,7 @@ vim.lsp.enable({
 	"vtsls",
 	"emmylua_ls",
 	"eslint",
+	"marksman",
 	"vue_ls",
 	"copilot",
 	"terraformls",
