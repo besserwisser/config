@@ -24,6 +24,9 @@ snacks.setup({
 			},
 		},
 		sources = {
+			smart = {
+				multi = { "recent", "files" },
+			},
 			recent = {
 				filter = {
 					cwd = true,
