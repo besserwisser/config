@@ -3,6 +3,7 @@ vim.pack.add({
 	"https://github.com/folke/snacks.nvim",
 })
 
+---@type Snacks
 local snacks = require("snacks")
 
 snacks.setup({
