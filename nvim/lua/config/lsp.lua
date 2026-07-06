@@ -34,14 +34,6 @@ vim.lsp.config("tailwindcss", {
 	},
 })
 
-vim.lsp.config("copilot", {
-	settings = {
-		telemetry = {
-			telemetryLevel = "off",
-		},
-	},
-})
-
 vim.lsp.config("vtsls", {
 	settings = {
 		vtsls = {
@@ -74,7 +66,6 @@ vim.lsp.enable({
 	"eslint",
 	"marksman",
 	"vue_ls",
-	"copilot",
 	"terraformls",
 	"cssls",
 	"html",

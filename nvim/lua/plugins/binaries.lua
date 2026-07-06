@@ -22,7 +22,6 @@ local ok_refresh, _ = pcall(mr.refresh, function(success, err)
 		"stylua",
 		"tree-sitter-cli",
 		"vue-language-server",
-		"copilot-language-server",
 		"terraform-ls",
 		"css-lsp",
 		"html-lsp",
