@@ -19,7 +19,6 @@ require("plugins.keymap-helper")
 
 -- Register LSP consumers before enabling servers so attach hooks always exist.
 require("config.completion")
-require("plugins.ai")
 
 -- Enable LSP after plugin runtimepaths are final so EmmyLua indexes plugin Lua code.
 require("config.lsp")
