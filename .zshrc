@@ -135,6 +135,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias vimdiff='nvim -d'
 alias nx="pnpx nx"
+alias gstw="watch --color -n1 git -c color.ui=always status"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
