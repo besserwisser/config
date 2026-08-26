@@ -37,6 +37,30 @@ snacks.setup({
 	},
 })
 
+-- Hand pictures and pdfs to an external renderer (see config.utils); the
+-- built-in previewer keeps everything else, including all code and text, where
+-- treesitter highlighting and jumping to a line beat any CLI rendering.
+local utils = require("config.utils")
+local orig_file_preview = Snacks.picker.preview.file
+Snacks.picker.preview.file = function(ctx)
+	local buf_loaded = ctx.item.buf
+		and vim.api.nvim_buf_is_valid(ctx.item.buf)
+		and vim.api.nvim_buf_is_loaded(ctx.item.buf)
+	local path = Snacks.picker.util.path(ctx.item)
+	local stat = path and (vim.uv or vim.loop).fs_stat(path)
+
+	if buf_loaded or ctx.item.pos or not stat or stat.type == "directory" or not utils.preview_handles(path) then
+		utils.clear_image_overlay()
+		return orig_file_preview(ctx)
+	end
+
+	ctx.preview:set_title(ctx.item.title or vim.fn.fnamemodify(path, ":t"))
+	ctx.preview:scratch() -- blank canvas; the image is painted over it
+	if not utils.preview_file(path, ctx.win) then
+		return orig_file_preview(ctx)
+	end
+end
+
 local keymap = vim.keymap.set
 
 
