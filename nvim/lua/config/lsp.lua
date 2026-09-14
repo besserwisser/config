@@ -12,6 +12,10 @@ vim.lsp.config("emmylua_ls", {
 			workspace = {
 				library = {
 					vim.env.VIMRUNTIME,
+					-- Plugins installed by vim.pack live here. Without them the
+					-- analyzer cannot resolve `require("snacks")` and friends,
+					-- which cascades into "undefined field" on every use.
+					vim.fn.stdpath("data") .. "/site/pack/core/opt",
 				},
 			},
 		},

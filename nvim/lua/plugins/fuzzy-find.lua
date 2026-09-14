@@ -1,3 +1,15 @@
+-- Nvim 0.13 ships a builtin directory browser (`:help dir`). It is a netrw
+-- replacement, not a file manager: the listing is read-only and provides no
+-- actions that touch the filesystem. Snacks' explorer does both, and being a
+-- picker it previews images through the same path the pickers do.
+--
+-- The two would fight over directory buffers. Snacks disables netrw by deleting
+-- the `FileExplorer` augroup, but the builtin only creates that one for
+-- backwards compatibility and keeps its own autocommands in `nvim.dir`, so it
+-- survives. Take it out explicitly -- this has to happen before Nvim sources its
+-- runtime plugins.
+vim.g.loaded_nvim_dir_plugin = true
+
 vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/folke/snacks.nvim",
@@ -8,6 +20,25 @@ local snacks = require("snacks")
 
 snacks.setup({
 	toggle = {},
+	explorer = {},
+	-- iTerm2 speaks the kitty graphics protocol -- placements and deletes both
+	-- work -- but it is not in snacks' terminal list (snacks/image/terminal.lua),
+	-- so detection has to be overridden. `force` skips it entirely; because no
+	-- environment then matches, `placeholders` stays off, which is what we want:
+	-- unicode placeholders are a kitty extension iTerm2 does not have, and snacks
+	-- falls back to positioning the image over the window instead.
+	image = {
+		enabled = true,
+		force = true,
+		-- snacks' default list, plus the three this config previewed before and
+		-- snacks does not list: svg, ico, and tif (it only has tiff).
+		-- stylua: ignore
+		formats = {
+			"png", "jpg", "jpeg", "gif", "bmp", "webp", "tiff", "tif",
+			"heic", "avif", "svg", "ico", "pdf", "icns",
+			"mp4", "mov", "avi", "mkv", "webm",
+		},
+	},
 	picker = {
 		ui_select = true,
 		win = {
@@ -25,6 +56,21 @@ snacks.setup({
 			},
 		},
 		sources = {
+			explorer = {
+				-- Defaults to a sidebar with the preview switched off. Neither
+				-- suits here: this is the float, and the preview is what makes
+				-- images show up at all (see `image` above).
+				layout = { preset = "telescope", preview = true },
+				-- The explorer defaults both of these to false, on the
+				-- assumption that it is a persistent sidebar you keep
+				-- browsing in. In a float that just leaves it sitting open
+				-- over the buffer you asked to open, needing a manual <Esc>.
+				-- Only files are affected -- opening a directory goes through
+				-- `Tree:toggle` instead of this at all (explorer/actions.lua),
+				-- so it still expands in place regardless of this setting.
+				auto_close = true,
+				jump = { close = true },
+			},
 			smart = {
 				multi = { "recent", "files" },
 			},
@@ -37,35 +83,12 @@ snacks.setup({
 	},
 })
 
--- Hand pictures and pdfs to an external renderer (see config.utils); the
--- built-in previewer keeps everything else, including all code and text, where
--- treesitter highlighting and jumping to a line beat any CLI rendering.
-local utils = require("config.utils")
-local orig_file_preview = Snacks.picker.preview.file
-Snacks.picker.preview.file = function(ctx)
-	local buf_loaded = ctx.item.buf
-		and vim.api.nvim_buf_is_valid(ctx.item.buf)
-		and vim.api.nvim_buf_is_loaded(ctx.item.buf)
-	local path = Snacks.picker.util.path(ctx.item)
-	local stat = path and (vim.uv or vim.loop).fs_stat(path)
-
-	if buf_loaded or ctx.item.pos or not stat or stat.type == "directory" or not utils.preview_handles(path) then
-		utils.clear_image_overlay()
-		return orig_file_preview(ctx)
-	end
-
-	ctx.preview:set_title(ctx.item.title or vim.fn.fnamemodify(path, ":t"))
-	ctx.preview:scratch() -- blank canvas; the image is painted over it
-	if not utils.preview_file(path, ctx.win) then
-		return orig_file_preview(ctx)
-	end
-end
-
 local keymap = vim.keymap.set
 
 
 -- stylua: ignore start
 -- Top Pickers & Explorer
+keymap("n", "<leader>e", function() snacks.explorer() end, { desc = "File Explorer" })
 keymap("n", "<leader><space>", function() snacks.picker.smart() end, { desc = "Smart Find Files" })
 keymap("n", "<leader>,", function() snacks.picker.buffers() end, { desc = "Buffers" })
 keymap("n", "<leader>/", function() snacks.picker.grep() end, { desc = "Grep" })
