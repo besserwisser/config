@@ -1,15 +1,3 @@
--- Nvim 0.13 ships a builtin directory browser (`:help dir`). It is a netrw
--- replacement, not a file manager: the listing is read-only and provides no
--- actions that touch the filesystem. Snacks' explorer does both, and being a
--- picker it previews images through the same path the pickers do.
---
--- The two would fight over directory buffers. Snacks disables netrw by deleting
--- the `FileExplorer` augroup, but the builtin only creates that one for
--- backwards compatibility and keeps its own autocommands in `nvim.dir`, so it
--- survives. Take it out explicitly -- this has to happen before Nvim sources its
--- runtime plugins.
-vim.g.loaded_nvim_dir_plugin = true
-
 vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/folke/snacks.nvim",
@@ -20,7 +8,6 @@ local snacks = require("snacks")
 
 snacks.setup({
 	toggle = {},
-	explorer = {},
 	-- iTerm2 speaks the kitty graphics protocol -- placements and deletes both
 	-- work -- but it is not in snacks' terminal list (snacks/image/terminal.lua),
 	-- so detection has to be overridden. `force` skips it entirely; because no
@@ -56,21 +43,6 @@ snacks.setup({
 			},
 		},
 		sources = {
-			explorer = {
-				-- Defaults to a sidebar with the preview switched off. Neither
-				-- suits here: this is the float, and the preview is what makes
-				-- images show up at all (see `image` above).
-				layout = { preset = "telescope", preview = true },
-				-- The explorer defaults both of these to false, on the
-				-- assumption that it is a persistent sidebar you keep
-				-- browsing in. In a float that just leaves it sitting open
-				-- over the buffer you asked to open, needing a manual <Esc>.
-				-- Only files are affected -- opening a directory goes through
-				-- `Tree:toggle` instead of this at all (explorer/actions.lua),
-				-- so it still expands in place regardless of this setting.
-				auto_close = true,
-				jump = { close = true },
-			},
 			smart = {
 				multi = { "recent", "files" },
 			},
@@ -87,8 +59,7 @@ local keymap = vim.keymap.set
 
 
 -- stylua: ignore start
--- Top Pickers & Explorer
-keymap("n", "<leader>e", function() snacks.explorer() end, { desc = "File Explorer" })
+-- Top Pickers
 keymap("n", "<leader><space>", function() snacks.picker.smart() end, { desc = "Smart Find Files" })
 keymap("n", "<leader>,", function() snacks.picker.buffers() end, { desc = "Buffers" })
 keymap("n", "<leader>/", function() snacks.picker.grep() end, { desc = "Grep" })
